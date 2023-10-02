@@ -1,12 +1,16 @@
-const { Pool } = require('pg');
-const ENV = process.env.NODE_ENV || 'development';
+const pg = require('pg')
+const path = require('path')
+
+// when Jest runs, it sets NODE_ENV=test. Else assume 'development'
+const mode = process.env.NODE_ENV || 'development'
 
 require('dotenv').config({
-  path: `${__dirname}/../.env.${ENV}`,
-});
+  path: path.join(__dirname, `/../.env.${mode}`),
+})
 
-if (!process.env.PGDATABASE) {
-  throw new Error('PGDATABASE not set');
-}
+// prevent connection to default DB of `postgres`:
+if (!process.env.PGDATABASE) throw new Error('PGDATABASE not set')
 
-module.exports = new Pool();
+const db = new pg.Pool()
+
+module.exports = db
