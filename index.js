@@ -1,11 +1,14 @@
 const express = require('express')
 
 const getEndpoints = require('./controllers/endpoint-controller.js')
-const { topicRouter } = require('./routes')
+const { topicRouter, articleRouter } = require('./routes')
 
 const app = express()
 
 app.get('/api', getEndpoints)
 app.use('/api/topics', topicRouter)
+app.use('/api/articles', articleRouter)
+
+app.use((err, req, res, next) => {})
 
 module.exports = app
