@@ -3,7 +3,7 @@ const db = require('../db/connection.js')
 class Topic {
   static async findMany() {
     const result = await db.query(`
-      SELECT * FROM topics
+      SELECT * FROM topics;
     `)
 
     return result.rows
@@ -13,7 +13,7 @@ class Topic {
     const result = await db.query(
       `
       SELECT * FROM topics
-      WHERE id = $1
+      WHERE id = $1;
     `,
       [id]
     )
