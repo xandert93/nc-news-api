@@ -33,22 +33,22 @@ const seed = ({ topics, users, articles, comments }) => {
     .then(() => {
       return db.query(`
       CREATE TABLE articles (
-        article_id SERIAL PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
+        author VARCHAR NOT NULL REFERENCES users(username),
         title VARCHAR NOT NULL,
         topic VARCHAR NOT NULL REFERENCES topics(slug),
-        author VARCHAR NOT NULL REFERENCES users(username),
         body VARCHAR NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         vote_count INT DEFAULT 0 NOT NULL,
-        article_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
+        img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`)
     })
     .then(() => {
       return db.query(`
       CREATE TABLE comments (
-        comment_id SERIAL PRIMARY KEY,
-        body VARCHAR NOT NULL,
-        article_id INT REFERENCES articles(article_id) NOT NULL,
+        id SERIAL PRIMARY KEY,
+        article_id INT REFERENCES articles NOT NULL,
+        body VARCHAR NOT NULL,      
         author VARCHAR REFERENCES users(username) NOT NULL,
         vote_count INT DEFAULT 0 NOT NULL,
         created_at TIMESTAMP DEFAULT NOW()
@@ -72,16 +72,16 @@ const seed = ({ topics, users, articles, comments }) => {
     .then(() => {
       const formattedarticles = articles.map(convertTimestampToDate)
       const insertArticlesQueryStr = format(
-        'INSERT INTO articles (title, topic, author, body, created_at, vote_count, article_img_url) VALUES %L RETURNING *;',
+        'INSERT INTO articles (title, topic, author, body, created_at, vote_count, img_url) VALUES %L RETURNING *;',
         formattedarticles.map(
-          ({ title, topic, author, body, created_at, vote_count = 0, article_img_url }) => [
+          ({ title, topic, author, body, created_at, vote_count = 0, img_url }) => [
             title,
             topic,
             author,
             body,
             created_at,
             vote_count,
-            article_img_url,
+            img_url,
           ]
         )
       )
@@ -89,7 +89,7 @@ const seed = ({ topics, users, articles, comments }) => {
       return db.query(insertArticlesQueryStr)
     })
     .then(({ rows: articleRows }) => {
-      const articleIdLookup = createRef(articleRows, 'title', 'article_id')
+      const articleIdLookup = createRef(articleRows, 'title', 'id')
       const formattedcomments = formatComments(comments, articleIdLookup)
 
       const insertCommentsQueryStr = format(
