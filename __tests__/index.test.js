@@ -56,6 +56,15 @@ describe('/api/topics', () => {
   })
 })
 
+describe('/api/articles', () => {
+  it.only('GET:200 issues a response where res.body.articles returns articles', async () => {
+    const res = await request(app).get('/api/articles').expect(200)
+    const { articles } = res.body
+
+    console.log(articles)
+  })
+})
+
 describe('/api/articles/:id', () => {
   it('GET:200 issues a response where res.body.article returns the matching article', async () => {
     const res = await request(app).get('/api/articles/1').expect(200)
