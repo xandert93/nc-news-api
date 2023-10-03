@@ -37,3 +37,15 @@ exports.getAllArticleComments = async (req, res) => {
     return res.sendStatus(400)
   }
 }
+
+exports.createArticleComment = async (req, res) => {
+  const { id } = req.params
+  const newComment = req.body
+
+  try {
+    const createdComment = await Comment.createOne(id, newComment)
+    return res.status(201).json({ comment: createdComment, message: 'Comment created!' })
+  } catch (err) {
+    return res.sendStatus(400)
+  }
+}

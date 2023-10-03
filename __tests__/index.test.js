@@ -161,11 +161,41 @@ describe('/api/articles/:id/comments', () => {
   })
 
   it('GET:404 (valid ID, not found) issues a response with `Not Found` error text', async () => {
-    const res = await request(app)
-      .get('/api/articles/10000/comments')
-      .expect(404)
+    const res = await request(app).get('/api/articles/10000/comments').expect(404)
 
     const errText = res.error.text
     expect(errText).toBe('Not Found')
+  })
+
+  it('POST:201 issues a response with a database-created comment', async () => {
+    const reqBody = { username: testUsers[0].username, body: 'Nice article!' }
+
+    const res = await request(app)
+      .post('/api/articles/1/comments')
+      .send(reqBody)
+      .expect(201)
+
+    const { comment } = res.body
+
+    expect(comment).toEqual({
+      id: testComments.length + 1,
+      article_id: 1,
+      vote_count: 0,
+      created_at: comment.created_at, // only way to do this - can't do `new Date(Date.now()).toISOString()`, because it'll always be slightly off the time it was created on DB
+      author: reqBody.username,
+      body: reqBody.body,
+    })
+  })
+
+  test('POST:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
+    const reqBody = { username: testUsers[0].username }
+
+    const res = await request(app)
+      .post('/api/articles/1/comments')
+      .send(reqBody)
+      .expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
   })
 })

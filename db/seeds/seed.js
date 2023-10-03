@@ -47,7 +47,7 @@ const seed = ({ topics, users, articles, comments }) => {
       return db.query(`
       CREATE TABLE comments (
         id SERIAL PRIMARY KEY,
-        article_id INT REFERENCES articles NOT NULL,
+        article_id INT REFERENCES articles(id) NOT NULL,
         body VARCHAR NOT NULL,      
         author VARCHAR REFERENCES users(username) NOT NULL,
         vote_count INT DEFAULT 0 NOT NULL,
@@ -62,7 +62,7 @@ const seed = ({ topics, users, articles, comments }) => {
       const topicsPromise = db.query(insertTopicsQueryStr)
 
       const insertUsersQueryStr = format(
-        'INSERT INTO users ( username, name, avatar_url) VALUES %L;',
+        'INSERT INTO users (username, name, avatar_url) VALUES %L;',
         users.map(({ username, name, avatar_url }) => [username, name, avatar_url])
       )
       const usersPromise = db.query(insertUsersQueryStr)
@@ -94,13 +94,15 @@ const seed = ({ topics, users, articles, comments }) => {
 
       const insertCommentsQueryStr = format(
         'INSERT INTO comments (body, author, article_id, vote_count, created_at) VALUES %L;',
-        formattedcomments.map(({ body, author, article_id, vote_count = 0, created_at }) => [
-          body,
-          author,
-          article_id,
-          vote_count,
-          created_at,
-        ])
+        formattedcomments.map(
+          ({ body, author, article_id, vote_count = 0, created_at }) => [
+            body,
+            author,
+            article_id,
+            vote_count,
+            created_at,
+          ]
+        )
       )
       return db.query(insertCommentsQueryStr)
     })
