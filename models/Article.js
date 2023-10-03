@@ -4,7 +4,7 @@ class Article {
   static async findMany() {
     const result = await db.query(
       `
-      SELECT a.id, a.author, a.title, a.topic, a.created_at, a.vote_count, a.img_url, COUNT(c.id) as comment_count FROM articles as a
+      SELECT a.id, a.author, a.title, a.topic, a.created_at, a.vote_count, a.img_url, COUNT(c.id)::integer as comment_count FROM articles as a
       JOIN comments as c ON a.id = c.article_id
       GROUP BY a.id;
       `
