@@ -22,9 +22,9 @@ const {
 describe('/api', () => {
   it('GET:200 response where res.body.endpoints returns an object describing all API endpoints', async () => {
     const res = await request(app).get('/api').expect(200)
-    const { api } = res.body
+    const { endpoints } = res.body
 
-    Object.values(api).forEach((endpoint) => {
+    Object.values(endpoints).forEach((endpoint) => {
       expect(typeof endpoint.description === 'string').toBe(true)
       expect(Array.isArray(endpoint.queries)).toBe(true)
       expect(checkIsObject(endpoint.exampleResponse)).toBe(true)
@@ -44,7 +44,7 @@ describe('/api/not-a-route', () => {
 
 describe('/api/topics', () => {
   it('GET:200 issues a response where res.body.topics returns an array of topics', async () => {
-    const res = await request(app).get('/api/topics')
+    const res = await request(app).get('/api/topics').expect(200)
     const { topics } = res.body
 
     expect(topics).toHaveLength(testTopics.length) // ensure it contains some data!
@@ -118,7 +118,7 @@ describe('/api/articles/:id/comments', () => {
     let comments
 
     beforeEach(async () => {
-      const res = await request(app).get('/api/articles/1/comments')
+      const res = await request(app).get('/api/articles/1/comments').expect(200)
       comments = res.body.comments
     })
 
@@ -146,7 +146,7 @@ describe('/api/articles/:id/comments', () => {
 
     it('are sorted by newest created', () => {
       const sortedComments = [...comments].sort(
-        (comment1, comment2) => comment2.createdAt - comment1.createdAt
+        (comment1, comment2) => comment2.created_at - comment1.created_at
       )
 
       expect(sortedComments).toEqual(comments)
