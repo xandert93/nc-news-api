@@ -8,7 +8,7 @@ exports.getAllArticles = async (req, res) => {
     const foundArticles = await Article.findMany()
     return res.json({ articles: foundArticles })
   } catch (err) {
-    console.log(err)
+    return
   }
 }
 

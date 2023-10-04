@@ -199,3 +199,23 @@ describe('/api/articles/:id/comments', () => {
     expect(errText).toBe('Bad Request')
   })
 })
+
+describe('/api/comments/:id', () => {
+  it('DELETE:204 issues a response with no content', async () => {
+    return await request(app).delete('/api/comments/1').expect(204)
+  })
+
+  it('DELETE:400 (invalid ID) issues a response with `Bad Request` error text', async () => {
+    const res = await request(app).delete('/api/comments/a').expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('DELETE:404 (valid ID, not found) issues a response with `Not Found` error text', async () => {
+    const res = await request(app).delete('/api/comments/10000').expect(404)
+
+    const errText = res.error.text
+    expect(errText).toBe('Not Found')
+  })
+})
