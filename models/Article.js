@@ -16,8 +16,10 @@ class Article {
   static async findById(id) {
     const result = await db.query(
       `
-      SELECT * FROM articles
-      WHERE id = $1;
+      SELECT a.*, COUNT(c.id)::integer as comment_count FROM articles as a
+      LEFT JOIN comments as c ON a.id = c.article_id
+      WHERE a.id = $1
+      GROUP BY a.id;
       `,
       [id]
     )

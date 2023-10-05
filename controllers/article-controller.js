@@ -21,6 +21,8 @@ exports.getArticle = async (req, res) => {
 
     return res.json({ article: foundArticle })
   } catch (err) {
+    console.log(err.message)
+
     return res.sendStatus(400)
   }
 }
