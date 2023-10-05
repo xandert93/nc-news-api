@@ -10,6 +10,8 @@ app.get('/api', getEndpoints)
 app.use('/api/topics', topicRouter)
 app.use('/api/articles', articleRouter)
 
-app.use((err, req, res, next) => {})
+app.use((err, req, res, next) => {
+  console.log(err.message)
+})
 
 module.exports = app

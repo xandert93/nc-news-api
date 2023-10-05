@@ -78,6 +78,52 @@ describe('/api/articles', () => {
       }
     })
   })
+
+  describe('GET:200 allows articles to be filtered by topic', () => {
+    it('returning matching topics for a present search term', async () => {
+      const res = await request(app).get('/api/articles?topic=mitch').expect(200)
+      const { articles } = res.body
+
+      const filteredArticles = testArticles
+        .filter((article) => article.topic === 'mitch')
+        .sort((a1, a2) => a2.created_at - a1.created_at)
+        .map((article) => {
+          const articleCopy = { ...article }
+          delete articleCopy.body
+          delete articleCopy.created_at
+
+          return articleCopy
+        })
+
+      articles.forEach((article, i) => {
+        expect(article).toMatchObject(filteredArticles[i])
+      })
+    })
+
+    it('returning no topics for an absent search term', async () => {
+      const res = await request(app).get('/api/articles?topic=NoSuchTopicBro').expect(200)
+      const { articles } = res.body
+
+      expect(articles).toHaveLength(0)
+    })
+
+    it('returning all articles for an invalid query parameter', async () => {
+      const res = await request(app).get('/api/articles?topi=banana').expect(200)
+      const { articles } = res.body
+
+      const actualArticles = [...testArticles]
+        .sort((a1, a2) => a2.created_at - a1.created_at)
+        .map((article) => {
+          const articleCopy = { ...article }
+          delete articleCopy.body
+          delete articleCopy.created_at
+
+          return articleCopy
+        })
+
+      expect(articles).toMatchObject(actualArticles)
+    })
+  })
 })
 
 describe('/api/articles/:id', () => {
@@ -187,7 +233,7 @@ describe('/api/articles/:id/comments', () => {
     })
   })
 
-  test('POST:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
+  it('POST:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
     const reqBody = { username: testUsers[0].username }
 
     const res = await request(app)
