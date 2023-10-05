@@ -10,10 +10,10 @@ require('dotenv').config({
 })
 
 // prevent connection to default DB of `postgres`:
-if (!process.env.PGDATABASE) throw new Error('PGDATABASE not set')
-
-if (isInProduction && !process.env.PGDATABASE_URL) {
-  throw new Error('Production PGDATABASE_URL not set')
+if (!isInProduction) {
+  if (!process.env.PGDATABASE) throw new Error('PGDATABASE not set')
+} else {
+  if (!process.env.PGDATABASE_URL) throw new Error('Production PGDATABASE_URL not set')
 }
 
 const db = new pg.Pool({
