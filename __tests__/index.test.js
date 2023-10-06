@@ -134,7 +134,7 @@ describe('/api/articles/:id/vote_count', () => {
     })
   })
 
-  it.only('PATCH:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
+  it('PATCH:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
     const reqBody = {}
 
     const res = await request(app)
@@ -144,6 +144,42 @@ describe('/api/articles/:id/vote_count', () => {
 
     const errText = res.error.text
     expect(errText).toBe('Bad Request')
+  })
+
+  it('PATCH:400 (inappropriate request body) issues a response with `Bad Request` error text', async () => {
+    const reqBody = { vote_increment: 'banana' }
+
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('PATCH:400 (invalid ID) issues a response with `Bad Request` error text', async () => {
+    const reqBody = {}
+
+    const res = await request(app)
+      .patch('/api/articles/not-an-id/vote_count')
+      .send(reqBody)
+      .expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('PATCH:404 (valid, but non-existent ID) issues a response with `Not Found` error text', async () => {
+    const reqBody = {}
+
+    const res = await request(app)
+      .patch('/api/articles/10000/vote_count')
+      .send(reqBody)
+      .expect(404)
+
+    const errText = res.error.text
+    expect(errText).toBe('Not Found')
   })
 })
 

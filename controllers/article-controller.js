@@ -31,6 +31,7 @@ exports.updateArticleVoteCount = async (req, res) => {
 
   try {
     const updatedArticle = await Article.updateVoteCountById(id, incVal)
+    if (!updatedArticle) return res.sendStatus(404)
 
     return res.json({ article: updatedArticle })
   } catch (err) {
