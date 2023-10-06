@@ -13,6 +13,8 @@ app.use('/api/articles', articleRouter)
 app.use('/api/comments', commentRouter)
 app.use('/api/users', userRouter)
 
-app.use((err, req, res, next) => {})
+app.use((err, req, res, next) => {
+  console.log(err.message)
+})
 
 module.exports = app

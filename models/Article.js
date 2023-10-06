@@ -1,7 +1,7 @@
 const db = require('../db/connection')
 
 class Article {
-  static async findMany() {
+  static async findMany(topic) {
     const result = await db.query(
       `
       SELECT 
@@ -16,7 +16,8 @@ class Article {
       FROM articles as a
       JOIN comments as c ON a.id = c.article_id
       GROUP BY a.id;
-      `
+      `,
+      [topic]
     )
 
     return result.rows
