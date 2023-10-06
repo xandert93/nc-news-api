@@ -8,7 +8,7 @@ exports.getAllArticles = async (req, res) => {
     const foundArticles = await Article.findMany()
     return res.json({ articles: foundArticles })
   } catch (err) {
-    console.log(err)
+    return
   }
 }
 
@@ -20,6 +20,20 @@ exports.getArticle = async (req, res) => {
     if (!foundArticle) return res.sendStatus(404)
 
     return res.json({ article: foundArticle })
+  } catch (err) {
+    return res.sendStatus(400)
+  }
+}
+
+exports.updateArticleVoteCount = async (req, res) => {
+  const { id } = req.params
+  const incVal = req.body.vote_increment
+
+  try {
+    const updatedArticle = await Article.updateVoteCountById(id, incVal)
+    if (!updatedArticle) return res.sendStatus(404)
+
+    return res.json({ article: updatedArticle })
   } catch (err) {
     return res.sendStatus(400)
   }

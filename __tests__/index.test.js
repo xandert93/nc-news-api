@@ -113,6 +113,76 @@ describe('/api/articles/:id', () => {
   })
 })
 
+describe('/api/articles/:id/vote_count', () => {
+  it('PATCH:200 issues a response with a database-updated article, where `.vote_count` is incremented by increment', async () => {
+    const testArticle = testArticles[0]
+
+    const reqBody = { vote_increment: 3 }
+
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(200)
+
+    const { article } = res.body
+
+    expect(article).toEqual({
+      id: 1,
+      ...testArticle,
+      created_at: article.created_at, // no way to avoid
+      vote_count: testArticle.vote_count + reqBody.vote_increment,
+    })
+  })
+
+  it('PATCH:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
+    const reqBody = {}
+
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('PATCH:400 (inappropriate request body) issues a response with `Bad Request` error text', async () => {
+    const reqBody = { vote_increment: 'banana' }
+
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('PATCH:400 (invalid ID) issues a response with `Bad Request` error text', async () => {
+    const reqBody = {}
+
+    const res = await request(app)
+      .patch('/api/articles/not-an-id/vote_count')
+      .send(reqBody)
+      .expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('PATCH:404 (valid, but non-existent ID) issues a response with `Not Found` error text', async () => {
+    const reqBody = {}
+
+    const res = await request(app)
+      .patch('/api/articles/10000/vote_count')
+      .send(reqBody)
+      .expect(404)
+
+    const errText = res.error.text
+    expect(errText).toBe('Not Found')
+  })
+})
+
 describe('/api/articles/:id/comments', () => {
   describe('GET:200 issues a response with comments that', () => {
     let comments
@@ -123,8 +193,16 @@ describe('/api/articles/:id/comments', () => {
     })
 
     it('have a matching article_id', () => {
+      const testArticleId = 1
+
+      const matchingCommentCount = testComments.filter((comment) => {
+        return comment.article_id === testArticleId
+      }).length
+
+      expect(comments).toHaveLength(matchingCommentCount)
+
       comments.forEach((comment) => {
-        expect(comment.article_id).toBe(1)
+        expect(comment.article_id).toBe(testArticleId)
       })
     })
 
@@ -187,7 +265,7 @@ describe('/api/articles/:id/comments', () => {
     })
   })
 
-  test('POST:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
+  it('POST:400 (insufficient request body) issues a response with `Bad Request` error text', async () => {
     const reqBody = { username: testUsers[0].username }
 
     const res = await request(app)
@@ -216,5 +294,23 @@ describe('/api/users', () => {
         expect(typeof user[key]).toBe(propTypes[key])
       }
     })
+
+describe('/api/comments/:id', () => {
+  it('DELETE:204 issues a response with no content', async () => {
+    return await request(app).delete('/api/comments/1').expect(204)
+  })
+
+  it('DELETE:400 (invalid ID) issues a response with `Bad Request` error text', async () => {
+    const res = await request(app).delete('/api/comments/a').expect(400)
+
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
+  })
+
+  it('DELETE:404 (valid ID, not found) issues a response with `Not Found` error text', async () => {
+    const res = await request(app).delete('/api/comments/10000').expect(404)
+
+    const errText = res.error.text
+    expect(errText).toBe('Not Found')
   })
 })
