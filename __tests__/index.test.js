@@ -117,20 +117,31 @@ describe('/api/articles', () => {
 })
 
 describe('/api/articles/:id', () => {
-  it('GET:200 issues a response where res.body.article returns the matching article', async () => {
-    const res = await request(app).get('/api/articles/1').expect(200)
-    const { article } = res.body
+  describe('GET:200 issues a response where res.body.article returns', () => {
+    it('the matching article', async () => {
+      const res = await request(app).get('/api/articles/1').expect(200)
+      const { article } = res.body
 
-    expect(article).toEqual({
-      id: 1,
-      author: 'butter_bridge',
-      title: 'Living in the shadow of a great man',
-      topic: 'mitch',
-      body: 'I find this existence challenging',
-      created_at: '2020-07-09T20:11:00.000Z', // hard to replicate programatically
-      vote_count: 100,
-      img_url:
-        'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
+      expect(article).toMatchObject({
+        author: 'butter_bridge',
+        title: 'Living in the shadow of a great man',
+        topic: 'mitch',
+        body: 'I find this existence challenging',
+        vote_count: 100,
+        img_url:
+          'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
+      })
+    })
+
+    it('the matching article with its aggregated comment_count', async () => {
+      const res = await request(app).get('/api/articles/1').expect(200)
+      const commentCount = res.body.article.comment_count
+
+      const actualCommentCount = testComments.filter((comment) => {
+        return comment.article_id === 1
+      }).length
+
+      expect(commentCount).toEqual(actualCommentCount)
     })
   })
 
