@@ -2,14 +2,18 @@ const Article = require('../models/Article.js')
 const Comment = require('../models/Comment.js')
 
 exports.getAllArticles = async (req, res) => {
-  const { topic } = req.query
+  const validQueries = ['topic']
+
+  for (const key in req.query) {
+    if (!validQueries.includes(key)) return res.sendStatus(400)
+  }
 
   try {
-    const foundArticles = await Article.findMany(topic)
+    const foundArticles = await Article.findMany(req.query.topic)
 
     return res.json({ articles: foundArticles })
   } catch (err) {
-    return
+    return res.sendStatus(404)
   }
 }
 

@@ -14,8 +14,10 @@ class Article {
         a.img_url, 
         COUNT(c.id)::integer as comment_count 
       FROM articles as a
-      JOIN comments as c ON a.id = c.article_id
-      GROUP BY a.id;
+      LEFT JOIN comments as c ON a.id = c.article_id
+      WHERE $1::varchar IS NULL or topic = $1
+      GROUP BY a.id
+      ORDER BY created_at DESC;
       `,
       [topic]
     )

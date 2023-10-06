@@ -106,23 +106,13 @@ describe('/api/articles', () => {
 
       expect(articles).toHaveLength(0)
     })
+  })
 
-    it('returning all articles for an invalid query parameter', async () => {
-      const res = await request(app).get('/api/articles?topi=banana').expect(200)
-      const { articles } = res.body
+  it('GET:400 (invalid query parameter) issues a response with `Bad Request` error text', async () => {
+    const res = await request(app).get('/api/articles?topi=banana').expect(400)
 
-      const actualArticles = [...testArticles]
-        .sort((a1, a2) => a2.created_at - a1.created_at)
-        .map((article) => {
-          const articleCopy = { ...article }
-          delete articleCopy.body
-          delete articleCopy.created_at
-
-          return articleCopy
-        })
-
-      expect(articles).toMatchObject(actualArticles)
-    })
+    const errText = res.error.text
+    expect(errText).toBe('Bad Request')
   })
 })
 
@@ -340,6 +330,8 @@ describe('/api/users', () => {
         expect(typeof user[key]).toBe(propTypes[key])
       }
     })
+  })
+})
 
 describe('/api/comments/:id', () => {
   it('DELETE:204 issues a response with no content', async () => {
