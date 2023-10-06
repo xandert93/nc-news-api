@@ -25,6 +25,20 @@ exports.getArticle = async (req, res) => {
   }
 }
 
+exports.updateArticleVoteCount = async (req, res) => {
+  const { id } = req.params
+  const incVal = req.body.vote_increment
+
+  try {
+    const updatedArticle = await Article.updateVoteCountById(id, incVal)
+    if (!updatedArticle) return res.sendStatus(404)
+
+    return res.json({ article: updatedArticle })
+  } catch (err) {
+    return res.sendStatus(400)
+  }
+}
+
 exports.getAllArticleComments = async (req, res) => {
   const { id } = req.params
 
