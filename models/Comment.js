@@ -23,6 +23,18 @@ class Comment {
 
     return result.rows[0]
   }
+
+  static async deleteById(id) {
+    const result = await db.query(
+      `
+      DELETE FROM comments
+      WHERE id = $1
+    `,
+      [id]
+    )
+
+    return Boolean(result.rowCount)
+  }
 }
 
 module.exports = Comment
