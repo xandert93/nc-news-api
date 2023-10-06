@@ -1,4 +1,5 @@
 const db = require('../db/connection.js')
+const { NotFoundError } = require('../utils/error-types.js')
 
 class Topic {
   static async findMany() {
@@ -18,7 +19,11 @@ class Topic {
       [id]
     )
 
-    return result.rows[0]
+    const foundTopic = result.rows[0]
+
+    if (!foundTopic) throw new NotFoundError('topic')
+
+    return foundTopic
   }
 }
 

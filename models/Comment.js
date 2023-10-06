@@ -1,4 +1,5 @@
 const db = require('../db/connection')
+const { NotFoundError } = require('../utils/error-types')
 
 class Comment {
   static async findManyByArticleId(id) {
@@ -33,7 +34,7 @@ class Comment {
       [id]
     )
 
-    return Boolean(result.rowCount)
+    if (!result.rowCount) throw new NotFoundError('comment')
   }
 }
 

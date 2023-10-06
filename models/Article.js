@@ -1,4 +1,5 @@
 const db = require('../db/connection')
+const { NotFoundError } = require('../utils/error-types')
 
 class Article {
   static async findMany(topic) {
@@ -36,7 +37,10 @@ class Article {
       [id]
     )
 
-    return result.rows[0]
+    const foundArticle = result.rows[0]
+
+    if (!foundArticle) throw new NotFoundError('article')
+    return foundArticle
   }
 
   static async updateVoteCountById(id, incVal) {
@@ -50,7 +54,10 @@ class Article {
       [id, incVal]
     )
 
-    return result.rows[0]
+    const updatedArticle = result.rows[0]
+
+    if (!updatedArticle) throw new NotFoundError('article')
+    return updatedArticle
   }
 }
 
