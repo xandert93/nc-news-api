@@ -1,13 +1,10 @@
 const request = require('supertest')
 
-const testData = require('../db/data/test-data')
+const testData = require('../../../db/data/test-data')
 
-const app = require('../index.js')
-const seed = require('../db/seeds/seed.js')
-const db = require('../db/connection.js')
-
-const { checkIsObject } = require('../utils/validators.js')
-const endpoints = require('../endpoints.json')
+const app = require('../../../index.js')
+const seed = require('../../../db/seeds/seed.js')
+const db = require('../../../db/connection.js')
 
 beforeEach(() => seed(testData))
 afterAll(() => db.end())
@@ -18,41 +15,6 @@ const {
   topics: testTopics,
   users: testUsers,
 } = testData
-
-describe('/api', () => {
-  it('GET:200 response where res.body.endpoints returns an object describing all API endpoints', async () => {
-    const res = await request(app).get('/api').expect(200)
-    const { endpoints } = res.body
-
-    Object.values(endpoints).forEach((endpoint) => {
-      expect(typeof endpoint.description === 'string').toBe(true)
-      expect(Array.isArray(endpoint.queries)).toBe(true)
-      expect(checkIsObject(endpoint.exampleResponse)).toBe(true)
-    })
-  })
-})
-
-describe('/api/not-a-route', () => {
-  it('GET:404 responds with `cannot GET` message', async () => {
-    const res = await request(app).get('/api/not-a-route').expect(404)
-
-    expect(res.error.message).toBe('cannot GET /api/not-a-route (404)')
-  })
-})
-
-describe('/api/topics', () => {
-  it('GET:200 responds with where res.body.topics returns an array of topics', async () => {
-    const res = await request(app).get('/api/topics').expect(200)
-    const { topics } = res.body
-
-    expect(topics).toHaveLength(testTopics.length) // ensure it contains some data!
-
-    topics.forEach((topic) => {
-      expect(typeof topic.description).toBe('string')
-      expect(typeof topic.slug).toBe('string')
-    })
-  })
-})
 
 describe('/api/articles', () => {
   it('GET:200 responds with where res.body.articles returns articles', async () => {
@@ -292,42 +254,5 @@ describe('/api/articles/:id/comments', () => {
     const res = await request(app).post('/api/articles/1/comments').send(reqBody).expect(400)
 
     expect(res.body.message).toMatch(/violates not-null constraint/)
-  })
-})
-
-describe('/api/users', () => {
-  it('GET:200 responds with where res.body.users returns users', async () => {
-    const res = await request(app).get('/api/users').expect(200)
-    const { users } = res.body
-
-    const propTypes = {
-      username: 'string',
-      name: 'string',
-      avatar_url: 'string',
-    }
-
-    users.forEach((user) => {
-      for (const key in propTypes) {
-        expect(typeof user[key]).toBe(propTypes[key])
-      }
-    })
-  })
-})
-
-describe('/api/comments/:id', () => {
-  it('DELETE:204 responds with no content', async () => {
-    return await request(app).delete('/api/comments/1').expect(204)
-  })
-
-  it('DELETE:400 (invalid ID) responds with "Bad Request" error text', async () => {
-    const res = await request(app).delete('/api/comments/a').expect(400)
-
-    expect(res.body.message).toMatch(/invalid input syntax for type integer/)
-  })
-
-  it('DELETE:404 (valid ID, not found) responds with a "Not Found" error message', async () => {
-    const res = await request(app).delete('/api/comments/10000').expect(404)
-
-    expect(res.body.message).toBe('That comment does not exist')
   })
 })

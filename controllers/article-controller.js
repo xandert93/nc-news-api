@@ -2,71 +2,52 @@ const Article = require('../models/Article.js')
 const Comment = require('../models/Comment.js')
 const { BadReqError } = require('../utils/error-types.js')
 
-exports.getArticles = async (req, res, next) => {
+exports.getArticles = async (req, res) => {
   const validQueries = ['topic']
 
   for (const key in req.query) {
     if (!validQueries.includes(key)) {
-      next(new BadReqError(`${key} is not a valid query parameter`))
+      const errMessage = `${key} is not a valid query parameter`
+      throw new BadReqError(errMessage)
     }
   }
 
-  try {
-    const foundArticles = await Article.findMany(req.query.topic)
+  const foundArticles = await Article.findMany(req.query.topic)
 
-    res.json({ articles: foundArticles })
-  } catch (err) {
-    return next(err)
-  }
+  return res.json({ articles: foundArticles })
 }
 
-exports.getArticle = async (req, res, next) => {
+exports.getArticle = async (req, res) => {
   const { id } = req.params
 
-  try {
-    const foundArticle = await Article.findById(id)
+  const foundArticle = await Article.findById(id)
 
-    res.json({ article: foundArticle })
-  } catch (err) {
-    next(err)
-  }
+  return res.json({ article: foundArticle })
 }
 
-exports.updateArticleVoteCount = async (req, res, next) => {
+exports.updateArticleVoteCount = async (req, res) => {
   const { id } = req.params
   const incVal = req.body.vote_increment
 
-  try {
-    const updatedArticle = await Article.updateVoteCountById(id, incVal)
+  const updatedArticle = await Article.updateVoteCountById(id, incVal)
 
-    res.json({ article: updatedArticle })
-  } catch (err) {
-    next(err)
-  }
+  return res.json({ article: updatedArticle })
 }
 
-exports.getArticleComments = async (req, res, next) => {
+exports.getArticleComments = async (req, res) => {
   const { id } = req.params
 
-  try {
-    await Article.findById(id) // ensure it exists prior
-    const foundComments = await Comment.findManyByArticleId(id)
+  await Article.findById(id) // ensure it exists prior
+  const foundComments = await Comment.findManyByArticleId(id)
 
-    return res.json({ comments: foundComments })
-  } catch (err) {
-    next(err)
-  }
+  return res.json({ comments: foundComments })
 }
 
-exports.createArticleComment = async (req, res, next) => {
+exports.createArticleComment = async (req, res) => {
   const { id } = req.params
   const newComment = req.body
 
-  try {
-    const createdComment = await Comment.createOne(id, newComment)
+  const createdComment = await Comment.createOne(id, newComment)
 
-    return res.status(201).json({ comment: createdComment, message: 'Comment created!' })
-  } catch (err) {
-    next(err)
-  }
+  return res.status(201).json({ comment: createdComment, message: 'Comment created!' })
 }

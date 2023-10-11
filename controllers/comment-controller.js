@@ -1,13 +1,8 @@
 const Comment = require('../models/Comment')
 
-exports.deleteComment = async (req, res, next) => {
+exports.deleteComment = async (req, res) => {
   const { id } = req.params
 
-  try {
-    await Comment.deleteById(id)
-
-    return res.sendStatus(204)
-  } catch (err) {
-    next(err)
-  }
+  await Comment.deleteById(id)
+  return res.sendStatus(204)
 }
