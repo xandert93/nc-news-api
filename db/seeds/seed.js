@@ -40,7 +40,7 @@ const seed = ({ topics, users, articles, comments }) => {
         body VARCHAR NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         vote_count INT DEFAULT 0 NOT NULL,
-        img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
+        image_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`)
     })
     .then(() => {
@@ -72,16 +72,16 @@ const seed = ({ topics, users, articles, comments }) => {
     .then(() => {
       const formattedarticles = articles.map(convertTimestampToDate)
       const insertArticlesQueryStr = format(
-        'INSERT INTO articles (title, topic, author, body, created_at, vote_count, img_url) VALUES %L RETURNING *;',
+        'INSERT INTO articles (title, topic, author, body, created_at, vote_count, image_url) VALUES %L RETURNING *;',
         formattedarticles.map(
-          ({ title, topic, author, body, created_at, vote_count = 0, img_url }) => [
+          ({ title, topic, author, body, created_at, vote_count = 0, image_url }) => [
             title,
             topic,
             author,
             body,
             created_at,
             vote_count,
-            img_url,
+            image_url,
           ]
         )
       )

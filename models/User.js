@@ -10,6 +10,18 @@ class User {
 
     return result.rows
   }
+
+  static async findOneByUsername(username) {
+    const result = await db.query(
+      `
+      SELECT username, name, avatar_url FROM users
+      WHERE username = $1;
+      `,
+      [username]
+    )
+
+    return result.rows[0]
+  }
 }
 
 module.exports = User

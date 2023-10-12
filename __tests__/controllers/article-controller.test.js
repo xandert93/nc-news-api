@@ -28,7 +28,7 @@ describe('/api/articles', () => {
       topic: 'string',
       created_at: 'string',
       vote_count: 'number',
-      img_url: 'string',
+      image_url: 'string',
       comment_count: 'number',
     }
 
@@ -87,7 +87,7 @@ describe('/api/articles/:id', () => {
         topic: 'mitch',
         body: 'I find this existence challenging',
         vote_count: 100,
-        img_url:
+        image_url:
           'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
       })
     })
@@ -123,7 +123,10 @@ describe('/api/articles/:id/vote_count', () => {
 
     const reqBody = { vote_increment: 3 }
 
-    const res = await request(app).patch('/api/articles/1/vote_count').send(reqBody).expect(200)
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(200)
 
     const { article } = res.body
 
@@ -138,7 +141,10 @@ describe('/api/articles/:id/vote_count', () => {
   it('PATCH:400 (insufficient request body) responds with a "Bad Request" error message', async () => {
     const reqBody = {}
 
-    const res = await request(app).patch('/api/articles/1/vote_count').send(reqBody).expect(400)
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(400)
 
     expect(res.body.message).toMatch(/violates not-null constraint/)
   })
@@ -146,7 +152,10 @@ describe('/api/articles/:id/vote_count', () => {
   it('PATCH:400 (inappropriate request body) responds with a "Bad Request" error message', async () => {
     const reqBody = { vote_increment: 'banana' }
 
-    const res = await request(app).patch('/api/articles/1/vote_count').send(reqBody).expect(400)
+    const res = await request(app)
+      .patch('/api/articles/1/vote_count')
+      .send(reqBody)
+      .expect(400)
 
     expect(res.body.message).toMatch(/invalid input syntax for type integer/)
   })
@@ -165,7 +174,10 @@ describe('/api/articles/:id/vote_count', () => {
   it('PATCH:404 (valid, but non-existent ID) responds with a "Not Found" error message', async () => {
     const reqBody = {}
 
-    const res = await request(app).patch('/api/articles/10000/vote_count').send(reqBody).expect(404)
+    const res = await request(app)
+      .patch('/api/articles/10000/vote_count')
+      .send(reqBody)
+      .expect(404)
 
     expect(res.body.message).toBe('That article does not exist')
   })
@@ -234,7 +246,10 @@ describe('/api/articles/:id/comments', () => {
   it('POST:201 responds with a database-created comment', async () => {
     const reqBody = { username: testUsers[0].username, body: 'Nice article!' }
 
-    const res = await request(app).post('/api/articles/1/comments').send(reqBody).expect(201)
+    const res = await request(app)
+      .post('/api/articles/1/comments')
+      .send(reqBody)
+      .expect(201)
 
     const { comment } = res.body
 
@@ -251,7 +266,10 @@ describe('/api/articles/:id/comments', () => {
   it('POST:400 (insufficient request body) responds with a "Bad Request" error message', async () => {
     const reqBody = { username: testUsers[0].username }
 
-    const res = await request(app).post('/api/articles/1/comments').send(reqBody).expect(400)
+    const res = await request(app)
+      .post('/api/articles/1/comments')
+      .send(reqBody)
+      .expect(400)
 
     expect(res.body.message).toMatch(/violates not-null constraint/)
   })

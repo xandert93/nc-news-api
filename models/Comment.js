@@ -25,6 +25,23 @@ class Comment {
     return result.rows[0]
   }
 
+  static async updateVoteCountById(id, incVal) {
+    const result = await db.query(
+      `
+      UPDATE comments
+      SET vote_count = vote_count + $2
+      WHERE id = $1
+      RETURNING *;
+    `,
+      [id, incVal]
+    )
+
+    const updatedComment = result.rows[0]
+
+    if (!updatedComment) throw new NotFoundError('comment')
+    return updatedComment
+  }
+
   static async deleteById(id) {
     const result = await db.query(
       `

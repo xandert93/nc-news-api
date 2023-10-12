@@ -7,3 +7,11 @@ exports.getUsers = async (req, res) => {
 
   return res.json({ users: foundUsers })
 }
+
+exports.getUserByUsername = async (req, res) => {
+  const { username } = req.params
+
+  const foundUser = await User.findOneByUsername(username)
+
+  return res.json({ user: foundUser })
+}

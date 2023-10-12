@@ -12,7 +12,7 @@ class Article {
         a.topic, 
         a.created_at, 
         a.vote_count, 
-        a.img_url, 
+        a.image_url, 
         COUNT(c.id)::integer as comment_count 
       FROM articles as a
       LEFT JOIN comments as c ON a.id = c.article_id
@@ -41,6 +41,17 @@ class Article {
 
     if (!foundArticle) throw new NotFoundError('article')
     return foundArticle
+  }
+
+  static async createOne() {
+    const result = await db.query(
+      `
+      INSERT INTO articles (author, title, body, topic)
+      VALUES ()
+      RETURNING *;
+    `,
+      []
+    )
   }
 
   static async updateVoteCountById(id, incVal) {

@@ -17,6 +17,14 @@ exports.getArticles = async (req, res) => {
   return res.json({ articles: foundArticles })
 }
 
+exports.createArticle = async (req, res) => {
+  const newArticle = req.body
+
+  const insertedArticle = await Article.createOne(newArticle)
+
+  return res.json({ article: insertedArticle })
+}
+
 exports.getArticle = async (req, res) => {
   const { id } = req.params
 
