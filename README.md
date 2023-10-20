@@ -55,14 +55,19 @@ npm start
 
 Here's a brief overview of the core tasks you'll be working on:
 
-- `GET /api/topics`: Get a list of topics.
 - `GET /api`: Get a list of available endpoints.
-- `GET /api/articles/:id`: Get a single article by ID.
+
+- `GET /api/topics`: Get a list of topics.
+
 - `GET /api/articles`: Get a list of articles.
-- `GET /api/articles/:id/comments`: Get comments for an article.
-- `POST /api/articles/:id/comments`: Add a comment to an article.
+- `GET /api/articles/:id`: Get a single article by ID.
 - `PATCH /api/articles/:id`: Update an article.
+
 - `DELETE /api/comments/:id`: Delete a comment.
+- `GET /api/comments/article_id/:article_id`: Get comments for an article.
+- `POST /api/comments/article_id/:article_id`: Add a comment to an article.
+
 - `GET /api/users`: Get a list of users.
+
 - `GET /api/articles (queries)`: Filter and sort articles.
 - `GET /api/articles/:id (comment count)`: Get an article with a comment count.

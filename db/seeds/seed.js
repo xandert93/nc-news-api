@@ -4,29 +4,23 @@ const { convertTimestampToDate, createRef, formatComments } = require('./utils')
 
 const seed = ({ topics, users, articles, comments }) => {
   return db
-    .query(`DROP TABLE IF EXISTS comments;`)
-    .then(() => {
-      return db.query(`DROP TABLE IF EXISTS articles;`)
-    })
-    .then(() => {
-      return db.query(`DROP TABLE IF EXISTS users;`)
-    })
-    .then(() => {
-      return db.query(`DROP TABLE IF EXISTS topics;`)
-    })
+    .query(`DROP TABLE IF EXISTS comments`)
+    .then(() => db.query(`DROP TABLE IF EXISTS articles`))
+    .then(() => db.query(`DROP TABLE IF EXISTS users`))
+    .then(() => db.query(`DROP TABLE IF EXISTS topics`))
     .then(() => {
       const topicsTablePromise = db.query(`
       CREATE TABLE topics (
-        slug VARCHAR PRIMARY KEY,
+        slug VARCHAR(255) PRIMARY KEY,
         description VARCHAR
-      );`)
+      )`)
 
       const usersTablePromise = db.query(`
       CREATE TABLE users (
-        username VARCHAR PRIMARY KEY,
-        name VARCHAR NOT NULL,
+        username VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
         avatar_url VARCHAR
-      );`)
+      )`)
 
       return Promise.all([topicsTablePromise, usersTablePromise])
     })
@@ -34,13 +28,13 @@ const seed = ({ topics, users, articles, comments }) => {
       return db.query(`
       CREATE TABLE articles (
         id SERIAL PRIMARY KEY,
-        author VARCHAR NOT NULL REFERENCES users(username),
-        title VARCHAR NOT NULL,
-        topic VARCHAR NOT NULL REFERENCES topics(slug),
+        author VARCHAR(255) NOT NULL REFERENCES users(username),
+        title VARCHAR(255) NOT NULL,
+        topic VARCHAR(255) NOT NULL REFERENCES topics(slug),
         body VARCHAR NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         vote_count INT DEFAULT 0 NOT NULL,
-        image_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
+        image_url VARCHAR(255) DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`)
     })
     .then(() => {
@@ -48,8 +42,8 @@ const seed = ({ topics, users, articles, comments }) => {
       CREATE TABLE comments (
         id SERIAL PRIMARY KEY,
         article_id INT REFERENCES articles(id) NOT NULL,
-        body VARCHAR NOT NULL,      
-        author VARCHAR REFERENCES users(username) NOT NULL,
+        body VARCHAR(255) NOT NULL,      
+        author VARCHAR(255) REFERENCES users(username) NOT NULL,
         vote_count INT DEFAULT 0 NOT NULL,
         created_at TIMESTAMP DEFAULT NOW()
       );`)

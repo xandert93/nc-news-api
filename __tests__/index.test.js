@@ -221,12 +221,12 @@ describe('/api/articles/:id/vote_count', () => {
   })
 })
 
-describe('/api/articles/:id/comments', () => {
+describe('/api/comments/article_id/:article_id', () => {
   describe('GET:200 responds with comments that', () => {
     let comments
 
     beforeEach(async () => {
-      const res = await request(app).get('/api/articles/1/comments').expect(200)
+      const res = await request(app).get('/api/comments/article_id/1').expect(200)
       comments = res.body.comments
     })
 
@@ -270,13 +270,13 @@ describe('/api/articles/:id/comments', () => {
   })
 
   it('GET:400 (invalid ID) responds with a "Bad Request" error message', async () => {
-    const res = await request(app).get('/api/articles/a/comments').expect(400)
+    const res = await request(app).get('/api/comments/article_id/a').expect(400)
 
     expect(res.body.message).toMatch(/invalid input syntax for type integer/)
   })
 
   it('GET:404 (valid ID, not found) responds with a "Not Found" error message', async () => {
-    const res = await request(app).get('/api/articles/10000/comments').expect(404)
+    const res = await request(app).get('/api/comments/article_id/10000').expect(404)
 
     expect(res.body.message).toBe('That article does not exist')
   })
@@ -285,7 +285,7 @@ describe('/api/articles/:id/comments', () => {
     const reqBody = { username: testUsers[0].username, body: 'Nice article!' }
 
     const res = await request(app)
-      .post('/api/articles/1/comments')
+      .post('/api/comments/article_id/1')
       .send(reqBody)
       .expect(201)
 
@@ -305,7 +305,7 @@ describe('/api/articles/:id/comments', () => {
     const reqBody = { username: testUsers[0].username }
 
     const res = await request(app)
-      .post('/api/articles/1/comments')
+      .post('/api/comments/article_id/1')
       .send(reqBody)
       .expect(400)
 
