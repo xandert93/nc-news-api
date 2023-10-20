@@ -34,7 +34,7 @@ const seed = ({ topics, users, articles, comments }) => {
         body VARCHAR NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         vote_count INT DEFAULT 0 NOT NULL,
-        image_url VARCHAR(255) DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
+        image_url VARCHAR(255) DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700' NOT NULL
       );`)
     })
     .then(() => {
