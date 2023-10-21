@@ -1,6 +1,6 @@
 module.exports = [
   {
-    name: 'coding',
+    name: 'software',
     description: 'Writing instructions for computers to perform tasks and solve problems',
   },
   {

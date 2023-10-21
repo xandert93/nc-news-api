@@ -11,7 +11,7 @@ class User {
     return result.rows
   }
 
-  static async findOneByUsername(username) {
+  static async findByUsername(username) {
     const result = await db.query(
       `
       SELECT * FROM users

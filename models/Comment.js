@@ -5,7 +5,19 @@ class Comment {
   static async findManyByArticleId(id) {
     const result = await db.query(
       `
-      SELECT * from comments WHERE article_id = $1
+      SELECT 
+        c.id, 
+        c.article_id,
+        json_build_object(
+          'username', u.username,
+          'avatar_url', u.avatar_url
+        ) AS author,
+        c.body,
+        c.upvote_count,
+        c.created_at
+      FROM comments as c
+      LEFT JOIN users as u ON u.username = c.author
+      WHERE article_id = $1
       ORDER BY created_at DESC;
     `,
       [id]
@@ -29,7 +41,7 @@ class Comment {
     const result = await db.query(
       `
       UPDATE comments
-      SET vote_count = vote_count + $2
+      SET upvote_count = upvote_count + $2
       WHERE id = $1
       RETURNING *;
     `,

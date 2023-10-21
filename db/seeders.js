@@ -25,14 +25,14 @@ const insertArticles = (articles) => async () => {
 
   const result = await db.query(
     pgFormat(
-      'INSERT INTO articles (author, topic, title, body, image_url, vote_count, created_at) VALUES %L RETURNING *;',
+      'INSERT INTO articles (author, topic, title, body, image_url, upvote_count, created_at) VALUES %L RETURNING *;',
       formattedarticles.map((art) => [
         art.author,
         art.topic,
         art.title,
         art.body,
         art.image_url,
-        art.vote_count || 0, // to do with the way test seed data and dev seed data are different
+        art.upvote_count || 0, // to do with the way test seed data and dev seed data are different
         art.created_at,
       ])
     )
@@ -47,12 +47,12 @@ const insertComments = (comments) => (insertedArticles) => {
 
   return db.query(
     pgFormat(
-      'INSERT INTO comments (body, author, article_id, vote_count, created_at) VALUES %L;',
+      'INSERT INTO comments (body, author, article_id, upvote_count, created_at) VALUES %L;',
       formattedComments.map((com) => [
         com.body,
         com.author,
         com.article_id,
-        com.vote_count,
+        com.upvote_count,
         com.created_at,
       ])
     )

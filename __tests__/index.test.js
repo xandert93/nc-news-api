@@ -61,11 +61,11 @@ describe('/api/articles', () => {
 
     const propTypes = {
       id: 'number',
-      author: 'string',
+      author: 'object',
       title: 'string',
       topic: 'string',
       created_at: 'string',
-      vote_count: 'number',
+      upvote_count: 'number',
       image_url: 'string',
       comment_count: 'number',
     }
@@ -124,7 +124,7 @@ describe('/api/articles/:id', () => {
         title: 'Living in the shadow of a great man',
         topic: 'mitch',
         body: 'I find this existence challenging',
-        vote_count: 100,
+        upvote_count: 100,
         image_url:
           'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
       })
@@ -155,14 +155,14 @@ describe('/api/articles/:id', () => {
   })
 })
 
-describe('/api/articles/:id/vote_count', () => {
-  it('PATCH:200 responds with a database-updated article, where `.vote_count` is incremented by increment', async () => {
+describe('/api/articles/:id/upvote_count', () => {
+  it('PATCH:200 responds with a database-updated article, where `.upvote_count` is incremented by increment', async () => {
     const testArticle = testArticles[0]
 
     const reqBody = { vote_increment: 3 }
 
     const res = await request(app)
-      .patch('/api/articles/1/vote_count')
+      .patch('/api/articles/1/upvote_count')
       .send(reqBody)
       .expect(200)
 
@@ -172,7 +172,7 @@ describe('/api/articles/:id/vote_count', () => {
       id: 1,
       ...testArticle,
       created_at: article.created_at, // no way to avoid
-      vote_count: testArticle.vote_count + reqBody.vote_increment,
+      upvote_count: testArticle.upvote_count + reqBody.vote_increment,
     })
   })
 
@@ -180,7 +180,7 @@ describe('/api/articles/:id/vote_count', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/1/vote_count')
+      .patch('/api/articles/1/upvote_count')
       .send(reqBody)
       .expect(400)
 
@@ -191,7 +191,7 @@ describe('/api/articles/:id/vote_count', () => {
     const reqBody = { vote_increment: 'banana' }
 
     const res = await request(app)
-      .patch('/api/articles/1/vote_count')
+      .patch('/api/articles/1/upvote_count')
       .send(reqBody)
       .expect(400)
 
@@ -202,7 +202,7 @@ describe('/api/articles/:id/vote_count', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/not-an-id/vote_count')
+      .patch('/api/articles/not-an-id/upvote_count')
       .send(reqBody)
       .expect(400)
 
@@ -213,7 +213,7 @@ describe('/api/articles/:id/vote_count', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/10000/vote_count')
+      .patch('/api/articles/10000/upvote_count')
       .send(reqBody)
       .expect(404)
 
@@ -247,7 +247,7 @@ describe('/api/comments/article_id/:article_id', () => {
     it('are of the correct shape', () => {
       const propTypes = {
         id: 'number',
-        vote_count: 'number',
+        upvote_count: 'number',
         created_at: 'string',
         author: 'string',
         body: 'string',
@@ -294,7 +294,7 @@ describe('/api/comments/article_id/:article_id', () => {
     expect(comment).toEqual({
       id: testComments.length + 1,
       article_id: 1,
-      vote_count: 0,
+      upvote_count: 0,
       created_at: comment.created_at, // only way to do this - can't do `new Date(Date.now()).toISOString()`, because it'll always be slightly off the time it was created on DB
       author: reqBody.username,
       body: reqBody.body,

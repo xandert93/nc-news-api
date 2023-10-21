@@ -7,18 +7,22 @@ class Article {
       `
       SELECT 
         a.id, 
-        a.author, 
+        json_build_object(
+          'username', MAX(u.username),
+          'avatar_url', MAX(u.avatar_url)
+        ) AS author, 
         a.title, 
         a.topic, 
-        a.created_at, 
-        a.vote_count, 
         a.image_url, 
-        COUNT(c.id)::integer as comment_count 
+        a.upvote_count, 
+        COUNT(c.id)::integer as comment_count,
+        a.created_at 
       FROM articles as a
+      LEFT JOIN users as u ON u.username = a.author
       LEFT JOIN comments as c ON a.id = c.article_id
       WHERE $1::varchar IS NULL or topic = $1
       GROUP BY a.id
-      ORDER BY created_at DESC;
+      ORDER BY a.created_at DESC;
       `,
       [topic]
     )
@@ -29,7 +33,20 @@ class Article {
   static async findById(id) {
     const result = await db.query(
       `
-      SELECT a.*, COUNT(c.id)::integer as comment_count FROM articles as a
+      SELECT 
+        a.id, 
+        json_build_object(
+          'username', MAX(u.username),
+          'avatar_url', MAX(u.avatar_url)
+        ) AS author, 
+        a.title, 
+        a.topic, 
+        a.image_url, 
+        a.upvote_count, 
+        COUNT(c.id)::integer as comment_count,
+        a.created_at  
+      FROM articles as a
+      LEFT JOIN users as u ON u.username = a.author
       LEFT JOIN comments as c ON a.id = c.article_id
       WHERE a.id = $1
       GROUP BY a.id;
@@ -58,7 +75,7 @@ class Article {
     const result = await db.query(
       `
       UPDATE articles
-      SET vote_count = vote_count + $2
+      SET upvote_count = upvote_count + $2
       WHERE id = $1
       RETURNING *;
     `,

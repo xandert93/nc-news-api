@@ -11,7 +11,7 @@ exports.getUsers = async (req, res) => {
 exports.getUserByUsername = async (req, res) => {
   const { username } = req.params
 
-  const foundUser = await User.findOneByUsername(username)
+  const foundUser = await User.findByUsername(username)
 
   return res.json({ user: foundUser })
 }

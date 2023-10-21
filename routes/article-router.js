@@ -10,6 +10,6 @@ const router = express.Router()
 
 router.route('/').get(getArticles)
 router.route('/:id').get(getArticle)
-router.patch('/:id/vote_count', updateArticleVoteCount)
+router.patch('/:id/upvote_count', updateArticleVoteCount)
 
 module.exports = router
