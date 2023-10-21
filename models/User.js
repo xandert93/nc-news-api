@@ -4,7 +4,7 @@ class User {
   static async findMany() {
     const result = await db.query(
       `
-      SELECT username, name, avatar_url FROM users;
+      SELECT * FROM users;
       `
     )
 
@@ -14,7 +14,7 @@ class User {
   static async findOneByUsername(username) {
     const result = await db.query(
       `
-      SELECT username, name, avatar_url FROM users
+      SELECT * FROM users
       WHERE username = $1;
       `,
       [username]

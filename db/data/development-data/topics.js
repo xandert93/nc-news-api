@@ -1,5 +1,14 @@
 module.exports = [
-  { description: 'Code is love, code is life', slug: 'coding' },
-  { description: 'FOOTIE!', slug: 'football' },
-  { description: 'Hey good looking, what you got cooking?', slug: 'cooking' }
-];
+  {
+    name: 'coding',
+    description: 'Writing instructions for computers to perform tasks and solve problems',
+  },
+  {
+    name: 'football',
+    description: 'Team sport with 11 players per side, kicking a ball.',
+  },
+  {
+    description: 'Preparing food through various techniques and recipes',
+    name: 'cooking',
+  },
+]

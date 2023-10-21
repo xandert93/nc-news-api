@@ -48,8 +48,8 @@ describe('/api/topics', () => {
     expect(topics).toHaveLength(testTopics.length) // ensure it contains some data!
 
     topics.forEach((topic) => {
+      expect(typeof topic.name).toBe('string')
       expect(typeof topic.description).toBe('string')
-      expect(typeof topic.slug).toBe('string')
     })
   })
 })
@@ -320,7 +320,8 @@ describe('/api/users', () => {
 
     const propTypes = {
       username: 'string',
-      name: 'string',
+      first_name: 'string',
+      last_name: 'string',
       avatar_url: 'string',
     }
 
