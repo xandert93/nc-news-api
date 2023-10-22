@@ -6,17 +6,17 @@ class ArticleComment {
     const result = await db.query(
       `
       SELECT 
-        c.id, 
-        c.article_id,
+        ac.id, 
+        ac.article_id,
         json_build_object(
           'username', u.username,
           'avatar_url', u.avatar_url
         ) AS author,
-        c.body,
-        c.upvote_count,
-        c.created_at
-      From article_comments as c
-      LEFT JOIN users as u ON u.username = c.author
+        ac.body,
+        ac.upvote_count,
+        ac.created_at
+      From article_comments as ac
+      LEFT JOIN users as u ON u.username = ac.author
       WHERE article_id = $1
       ORDER BY created_at DESC;
     `,
@@ -29,7 +29,7 @@ class ArticleComment {
   static async createOne(newComment) {
     const result = await db.query(
       `
-      INSERT INTO comments (article_id, author, body) VALUES ($1, $2, $3) RETURNING *
+      INSERT INTO article_comments (article_id, author, body) VALUES ($1, $2, $3) RETURNING *
     `,
       [newComment.article_id, newComment.username, newComment.body]
     )
@@ -40,7 +40,7 @@ class ArticleComment {
   static async updateVoteCountById(id, incVal) {
     const result = await db.query(
       `
-      UPDATE comments
+      UPDATE article_comments
       SET upvote_count = upvote_count + $2
       WHERE id = $1
       RETURNING *;

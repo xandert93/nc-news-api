@@ -16,11 +16,11 @@ class Article {
         a.body,
         a.image_url, 
         a.upvote_count, 
-        COUNT(c.id)::integer as comment_count,
+        COUNT(ac.id)::integer as comment_count,
         a.created_at 
       FROM articles as a
       LEFT JOIN users as u ON u.username = a.author
-      LEFT JOIN comments as c ON a.id = c.article_id
+      LEFT JOIN article_comments as ac ON a.id = ac.article_id
       WHERE $1::varchar IS NULL or topic = $1
       GROUP BY a.id
       ORDER BY a.created_at DESC;
@@ -45,11 +45,11 @@ class Article {
         a.body,
         a.image_url, 
         a.upvote_count, 
-        COUNT(c.id)::integer as comment_count,
+        COUNT(ac.id)::integer as comment_count,
         a.created_at  
       FROM articles as a
       LEFT JOIN users as u ON u.username = a.author
-      LEFT JOIN comments as c ON a.id = c.article_id
+      LEFT JOIN article_comments as ac ON a.id = ac.article_id
       WHERE a.id = $1
       GROUP BY a.id;
       `,
