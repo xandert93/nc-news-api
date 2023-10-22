@@ -1,7 +1,7 @@
 const db = require('../db/connection')
 const { NotFoundError } = require('../utils/error-types')
 
-class Comment {
+class ArticleComment {
   static async findManyByArticleId(id) {
     const result = await db.query(
       `
@@ -15,7 +15,7 @@ class Comment {
         c.body,
         c.upvote_count,
         c.created_at
-      FROM comments as c
+      From article_comments as c
       LEFT JOIN users as u ON u.username = c.author
       WHERE article_id = $1
       ORDER BY created_at DESC;
@@ -26,12 +26,12 @@ class Comment {
     return result.rows
   }
 
-  static async createOne(id, newComment) {
+  static async createOne(newComment) {
     const result = await db.query(
       `
       INSERT INTO comments (article_id, author, body) VALUES ($1, $2, $3) RETURNING *
     `,
-      [id, newComment.username, newComment.body]
+      [newComment.article_id, newComment.username, newComment.body]
     )
 
     return result.rows[0]
@@ -57,7 +57,7 @@ class Comment {
   static async deleteById(id) {
     const result = await db.query(
       `
-      DELETE FROM comments
+      DELETE From article_comments
       WHERE id = $1
     `,
       [id]
@@ -67,4 +67,4 @@ class Comment {
   }
 }
 
-module.exports = Comment
+module.exports = ArticleComment

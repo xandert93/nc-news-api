@@ -4,7 +4,12 @@ require('express-async-errors')
 
 const getEndpoints = require('./controllers/endpoint-controller.js')
 
-const { topicRouter, articleRouter, userRouter, commentRouter } = require('./routes')
+const {
+  articleTopicRouter,
+  articleRouter,
+  userRouter,
+  articleCommentRouter,
+} = require('./routes')
 
 const {
   clientErrHandler,
@@ -20,9 +25,11 @@ app.use(express.json())
 app.get('/', (req, res) => res.send("Welcome to Xander's NC News API"))
 
 app.get('/api', getEndpoints)
-app.use('/api/topics', topicRouter)
+
 app.use('/api/articles', articleRouter)
-app.use('/api/comments', commentRouter)
+app.use('/api/article-topics', articleTopicRouter)
+app.use('/api/article-comments', articleCommentRouter)
+
 app.use('/api/users', userRouter)
 
 app.use(dbErrHandler)

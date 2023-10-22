@@ -11,8 +11,8 @@ class Article {
           'username', MAX(u.username),
           'avatar_url', MAX(u.avatar_url)
         ) AS author, 
-        a.title, 
-        a.topic, 
+        a.title,
+        a.topic,
         a.body,
         a.image_url, 
         a.upvote_count, 

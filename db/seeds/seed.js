@@ -17,10 +17,10 @@ const {
 
 const seed = ({ topics, users, articles, comments }) => {
   return db
-    .query(`DROP TABLE IF EXISTS comments`)
+    .query(`DROP TABLE IF EXISTS article_comments`)
     .then(() => db.query(`DROP TABLE IF EXISTS articles`))
     .then(() => db.query(`DROP TABLE IF EXISTS users`))
-    .then(() => db.query(`DROP TABLE IF EXISTS topics`))
+    .then(() => db.query(`DROP TABLE IF EXISTS article_topics`))
     .then(createTopicsTable)
     .then(createUsersTable)
     .then(createArticlesTable)

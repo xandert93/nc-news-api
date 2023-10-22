@@ -5,7 +5,7 @@ const { createRef, formatComments, convertTimestampToDate } = require('./seeds/u
 const insertTopics = (topics) => () => {
   return db.query(
     pgFormat(
-      'INSERT INTO topics (name, description) VALUES %L;',
+      'INSERT INTO article_topics (name, description) VALUES %L;',
       topics.map((t) => [t.name, t.description])
     )
   )
@@ -47,7 +47,7 @@ const insertComments = (comments) => (insertedArticles) => {
 
   return db.query(
     pgFormat(
-      'INSERT INTO comments (body, author, article_id, upvote_count, created_at) VALUES %L;',
+      'INSERT INTO article_comments (body, author, article_id, upvote_count, created_at) VALUES %L;',
       formattedComments.map((com) => [
         com.body,
         com.author,

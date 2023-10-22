@@ -329,7 +329,7 @@ module.exports = [
     created_at: 1578906060000,
   },
   {
-    body: 'Eaque fugiat est veniam ex praesentium et saepe molestias non. Est dolore et sint consequuntur.',
+    body: "The article 'The Notorious MSG’s Unlikely Formula For Success' offers a serious and thorough analysis of the umami trend and the redemption of monosodium glutamate. It's a must-read for anyone interested in the evolving world of gastronomy.",
     upvote_count: 12,
     author: 'jessjelly',
     article_id: 34,
@@ -343,7 +343,7 @@ module.exports = [
     created_at: 1604600760000,
   },
   {
-    body: 'Et sed quia repudiandae aut error ut. Sequi voluptas error ut quibusdam officia quis. Sapiente est rem. Culpa molestiae omnis vel. Explicabo ea velit ipsa quasi autem error culpa quasi. Nulla ab omnis optio non voluptatem cumque.',
+    body: "I thoroughly enjoyed reading 'The Notorious MSG’s Unlikely Formula For Success.' It's fascinating how the 'umami' craze has elevated monosodium glutamate to a whole new level in the culinary world. Kudos to the author for shedding light on this intriguing topic!",
     upvote_count: 0,
     author: 'cooljmessy',
     article_id: 34,
@@ -371,7 +371,7 @@ module.exports = [
     created_at: 1580915580000,
   },
   {
-    body: 'Possimus exercitationem unde temporibus id eos officiis. Qui veniam blanditiis porro omnis rerum. Vel iste nisi voluptatem autem illum aperiam velit.',
+    body: "I found 'The Notorious MSG’s Unlikely Formula For Success' to be a delightful exploration of the umami craze and MSG's resurgence. It's a friendly reminder that sometimes, the most misunderstood ingredients can become culinary treasures.",
     upvote_count: 8,
     author: 'grumpy19',
     article_id: 34,
@@ -392,7 +392,7 @@ module.exports = [
     created_at: 1596813600000,
   },
   {
-    body: 'Et aliquam consequatur ea sunt et. Maxime aut nobis voluptatem eos facilis vero incidunt delectus. Atque quaerat id aut tempore non hic hic sed. Nemo natus culpa nesciunt. Beatae quod est omnis hic aliquam accusantium dolorum natus. Totam voluptatem incidunt a repudiandae ut.',
+    body: "While the article provides insights into MSG's revival in the culinary world, it falls short in addressing some critical concerns surrounding its consumption. A more balanced perspective would be beneficial in 'The Notorious MSG’s Unlikely Formula For Success.'",
     upvote_count: 5,
     author: 'happyamy2016',
     article_id: 34,
@@ -791,7 +791,7 @@ module.exports = [
     created_at: 1579281180000,
   },
   {
-    body: 'Eligendi placeat aspernatur omnis delectus maxime inventore at porro. Accusantium nobis totam fugiat debitis quia repellat quo qui voluptatem. Laboriosam nesciunt distinctio et aut itaque ipsa aut. Cum accusantium et et recusandae numquam quas et. Porro minima accusantium atque quo illo.',
+    body: "'The Notorious MSG’s Unlikely Formula For Success' delves deep into the umami phenomenon and the redemption of MSG. This serious and well-researched piece offers a comprehensive view of how the culinary world is embracing the 'fifth taste.'",
     upvote_count: -4,
     author: 'tickle122',
     article_id: 34,
@@ -861,7 +861,7 @@ module.exports = [
     created_at: 1595708640000,
   },
   {
-    body: 'Vitae laudantium molestiae neque ut dicta fuga similique. Sit nesciunt magni sit beatae. Porro recusandae aut exercitationem eligendi voluptas. Dolore eligendi inventore magni voluptatem quia ut ut.',
+    body: "I'm pleasantly surprised by the article 'The Notorious MSG’s Unlikely Formula For Success.' It's a friendly and enlightening read, highlighting how umami has transformed MSG's reputation. The world of cuisine owes a lot to this unsung hero!",
     upvote_count: -1,
     author: 'grumpy19',
     article_id: 34,
@@ -903,7 +903,7 @@ module.exports = [
     created_at: 1592719620000,
   },
   {
-    body: 'Ad odio a assumenda ad ut. Quidem modi in enim tempora labore. Culpa reiciendis nulla est maxime. Magni rem voluptatem sunt. Distinctio reiciendis consequatur aut eaque natus cum. Dicta rerum eum nisi.',
+    body: "While 'The Notorious MSG’s Unlikely Formula For Success' offers a comprehensive view of the umami trend and the rehabilitation of monosodium glutamate, I must point out that it lacks a critical examination of potential health concerns associated with MSG. A more balanced perspective would enhance the article.",
     upvote_count: 18,
     author: 'jessjelly',
     article_id: 34,
@@ -945,7 +945,7 @@ module.exports = [
     created_at: 1599462120000,
   },
   {
-    body: 'Eveniet ratione rerum. Corrupti vitae excepturi sit repudiandae iste dolor consectetur sit eum.',
+    body: "What an incredible article! The author's ability to transform complex data into a quantifiable metric for measuring high press intensity is remarkable. It's a game-changer!",
     upvote_count: 18,
     author: 'weegembump',
     article_id: 22,
@@ -1050,7 +1050,7 @@ module.exports = [
     created_at: 1579277160000,
   },
   {
-    body: 'Fuga hic sed. Minus expedita eos aut. Enim dolores iure consequatur et consequatur dolor autem. Itaque consequatur quia. Ullam officia cumque nihil officiis. Earum error iure sed non earum.',
+    body: "The article on 'The Notorious MSG’s Unlikely Formula For Success' presents a deep dive into the umami phenomenon and the redemption of monosodium glutamate. It's a serious exploration of a topic often misunderstood, providing valuable insights into the culinary world.",
     upvote_count: 14,
     author: 'jessjelly',
     article_id: 34,
@@ -1099,7 +1099,7 @@ module.exports = [
     created_at: 1580605800000,
   },
   {
-    body: 'Voluptatibus laudantium vel consequuntur explicabo voluptatem adipisci eligendi nihil magni. Dolore in molestias ullam sapiente et aperiam. Et aut est placeat porro dolor et modi reiciendis. Enim fuga exercitationem in. Dolore sint laudantium quos sint et aut possimus.',
+    body: 'I found this article to be a serious piece of work. The analytical approach is impressive, and it has the potential to revolutionise how we understand high pressing in soccer.',
     upvote_count: -5,
     author: 'happyamy2016',
     article_id: 22,
@@ -1211,7 +1211,7 @@ module.exports = [
     created_at: 1591964280000,
   },
   {
-    body: 'Sit dolores similique temporibus omnis. Reiciendis animi similique. Tempore inventore aperiam. Labore dolorem sint molestiae assumenda ipsum.',
+    body: "I thoroughly enjoyed reading 'The Notorious MSG’s Unlikely Formula For Success.' It's fascinating how the 'umami' craze has elevated monosodium glutamate to a whole new level in the culinary world. Kudos to the author for shedding light on this intriguing topic!",
     upvote_count: -2,
     author: 'cooljmessy',
     article_id: 34,
@@ -1239,7 +1239,7 @@ module.exports = [
     created_at: 1586916960000,
   },
   {
-    body: 'Harum est in ut et odio sit quis dolore earum. Ad ratione velit consequatur.',
+    body: "The article raises critical questions about the future of soccer analytics. It's a great starting point for a much-needed conversation on pressing intensity measurement.",
     upvote_count: 1,
     author: 'weegembump',
     article_id: 22,
@@ -1281,7 +1281,7 @@ module.exports = [
     created_at: 1605431640000,
   },
   {
-    body: 'Aut unde dolor debitis exercitationem atque necessitatibus. Rerum alias commodi sunt. Quasi ipsa iure omnis et rerum corrupti. Rerum voluptatem aliquid tempore doloremque et facere sapiente nam. Qui totam ipsum. Ipsa sed eum laborum nulla dolore consequatur aspernatur ea.',
+    body: "The article provides a comprehensive exploration of the umami phenomenon and the rehabilitation of monosodium glutamate. It's a serious and well-researched piece, shedding light on a subject that's often misunderstood in the culinary world.",
     upvote_count: 6,
     author: 'jessjelly',
     article_id: 34,
@@ -1470,7 +1470,7 @@ module.exports = [
     created_at: 1597608180000,
   },
   {
-    body: 'Molestiae ut esse a error necessitatibus doloribus eligendi nesciunt. Ea minus voluptatem quae maxime distinctio.',
+    body: "While the article discusses the umami trend and MSG's resurgence, it also touches on some of the health concerns associated with MSG. It's a balanced perspective that encourages further discussion and examination of this culinary journey.",
     upvote_count: -3,
     author: 'cooljmessy',
     article_id: 34,
@@ -1792,7 +1792,7 @@ module.exports = [
     created_at: 1597065300000,
   },
   {
-    body: 'Non consequuntur est et fugit delectus id occaecati aut consequatur. Et totam qui. Vel tempore qui quam iusto adipisci voluptate repudiandae cum. Temporibus et illum.',
+    body: 'Defensive metrics are vital for the sport, and this article provides a friendly introduction to their potential impact on coaching and analysis. Well done!',
     upvote_count: 16,
     author: 'jessjelly',
     article_id: 22,
@@ -1820,7 +1820,7 @@ module.exports = [
     created_at: 1598246220000,
   },
   {
-    body: 'Delectus id consequatur voluptatem ad sapiente quia optio dolor. Dolorum est ullam vitae.',
+    body: "While the article is informative, there's room for a more critical examination of the data sources and potential biases. A necessary but constructive critique.",
     upvote_count: -5,
     author: 'grumpy19',
     article_id: 22,
@@ -2030,7 +2030,7 @@ module.exports = [
     created_at: 1598986800000,
   },
   {
-    body: 'Reiciendis molestias ut possimus enim voluptatem cumque nam possimus rem. Quod sequi porro et velit dolor ut cupiditate perferendis. Cum omnis omnis sit quia maiores quos qui. Consequuntur error distinctio dolores.',
+    body: 'Defensive metrics are a fascinating topic, and this article presents a friendly overview for readers new to the subject. Great for beginners!',
     upvote_count: 0,
     author: 'jessjelly',
     article_id: 22,
@@ -2051,7 +2051,7 @@ module.exports = [
     created_at: 1603584000000,
   },
   {
-    body: 'Fugit tenetur et. Consequatur aliquam molestiae voluptas iure perspiciatis et possimus in maiores. Sint et laudantium blanditiis. Illo et sapiente consequatur ducimus est.',
+    body: "The article on defensive metrics is well-written and informative. It's a friendly addition to the growing field of soccer analytics.",
     upvote_count: 1,
     author: 'weegembump',
     article_id: 22,
@@ -2093,7 +2093,7 @@ module.exports = [
     created_at: 1590375780000,
   },
   {
-    body: 'Quia nemo est. Maiores animi architecto ad nihil sapiente. Odio in maxime nam assumenda tempora et nisi. Impedit quidem cum neque libero sequi et et impedit. Dignissimos ut molestiae laborum rerum error distinctio quasi hic consectetur. Odio vel qui necessitatibus perspiciatis ipsum quod excepturi saepe.',
+    body: "The article's critical approach to pressing intensity measurement opens doors for further exploration. A must-read for anyone interested in soccer analytics.",
     upvote_count: -1,
     author: 'jessjelly',
     article_id: 22,

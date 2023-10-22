@@ -1,12 +1,12 @@
-const topicRouter = require('./topic-router.js')
+const articleTopicRouter = require('./article-topic-router.js')
 const articleRouter = require('./article-router.js')
-const userRouter = require('./user-router.js')
-const commentRouter = require('./comment-router.js')
+const articleCommentRouter = require('./article-comment-router.js')
 
+const userRouter = require('./user-router.js')
 
 module.exports = {
-  topicRouter,
+  articleTopicRouter,
   articleRouter,
+  articleCommentRouter,
   userRouter,
-  commentRouter
 }

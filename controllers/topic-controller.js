@@ -1,7 +1,7 @@
-const Topic = require('../models/Topic.js')
+const ArticleTopic = require('../models/ArticleTopic.js')
 
 exports.getTopics = async (req, res) => {
-  const foundTopics = await Topic.findMany()
+  const foundTopics = await ArticleTopic.findMany()
 
   return res.json({ topics: foundTopics })
 }

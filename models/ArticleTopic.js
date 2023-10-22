@@ -1,10 +1,10 @@
 const db = require('../db/connection.js')
 const { NotFoundError } = require('../utils/error-types.js')
 
-class Topic {
+class ArticleTopic {
   static async findMany() {
     const result = await db.query(`
-      SELECT * FROM topics;
+      SELECT * From article_topics;
     `)
 
     return result.rows
@@ -13,7 +13,7 @@ class Topic {
   static async findById(id) {
     const result = await db.query(
       `
-      SELECT * FROM topics
+      SELECT * From article_topics
       WHERE id = $1;
     `,
       [id]
@@ -27,4 +27,4 @@ class Topic {
   }
 }
 
-module.exports = Topic
+module.exports = ArticleTopic
