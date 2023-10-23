@@ -62,15 +62,26 @@ class Article {
     return foundArticle
   }
 
-  static async createOne() {
+  static async createOne(newArticle) {
     const result = await db.query(
       `
-      INSERT INTO articles (author, title, body, topic)
-      VALUES ()
+      INSERT INTO articles (author, title, topic, body, image_url)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `,
-      []
+      [
+        newArticle.author,
+        newArticle.title,
+        newArticle.topic,
+        newArticle.body,
+        newArticle.image_url ||
+          'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700', // ❓ when we specify $5, DEFAULT specified in table appears to be ignored, even if $5 => undefined or null
+      ]
     )
+
+    const insertedArticle = result.rows[0]
+    insertedArticle.comment_count = 0
+    return insertedArticle
   }
 
   static async updateVoteCountById(id, incVal) {

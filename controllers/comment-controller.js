@@ -20,16 +20,16 @@ exports.getArticleComments = async (req, res) => {
   return res.json({ comments: foundComments })
 }
 
-exports.deleteComment = async (req, res) => {
+exports.deleteArticleComment = async (req, res) => {
   const { id } = req.params
 
   await ArticleComment.deleteById(id)
   return res.sendStatus(204)
 }
 
-exports.updateCommentVoteCount = async (req, res) => {
+exports.updateArticleCommentVoteCount = async (req, res) => {
   const { id } = req.params
-  const incVal = req.body.vote_increment
+  const incVal = req.body.vote_count_incVal
 
   const updatedComment = await ArticleComment.updateVoteCountById(id, incVal)
   return res.json({ comment: updatedComment })

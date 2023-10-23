@@ -35,7 +35,7 @@ exports.getArticle = async (req, res) => {
 
 exports.updateArticleVoteCount = async (req, res) => {
   const { id } = req.params
-  const incVal = req.body.vote_increment
+  const incVal = req.body.vote_count_incVal
 
   const updatedArticle = await Article.updateVoteCountById(id, incVal)
 

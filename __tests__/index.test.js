@@ -159,7 +159,7 @@ describe('/api/articles/:id/upvote_count', () => {
   it('PATCH:200 responds with a database-updated article, where `.upvote_count` is incremented by increment', async () => {
     const testArticle = testArticles[0]
 
-    const reqBody = { vote_increment: 3 }
+    const reqBody = { vote_count_incVal: 3 }
 
     const res = await request(app)
       .patch('/api/articles/1/upvote_count')
@@ -172,7 +172,7 @@ describe('/api/articles/:id/upvote_count', () => {
       id: 1,
       ...testArticle,
       created_at: article.created_at, // no way to avoid
-      upvote_count: testArticle.upvote_count + reqBody.vote_increment,
+      upvote_count: testArticle.upvote_count + reqBody.vote_count_incVal,
     })
   })
 
@@ -188,7 +188,7 @@ describe('/api/articles/:id/upvote_count', () => {
   })
 
   it('PATCH:400 (inappropriate request body) responds with a "Bad Request" error message', async () => {
-    const reqBody = { vote_increment: 'banana' }
+    const reqBody = { vote_count_incVal: 'banana' }
 
     const res = await request(app)
       .patch('/api/articles/1/upvote_count')

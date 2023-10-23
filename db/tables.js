@@ -6,7 +6,8 @@ function createUsersTable() {
           username VARCHAR(255) PRIMARY KEY,
           first_name VARCHAR(255) NOT NULL,
           last_name VARCHAR(255) NOT NULL,
-          avatar_url VARCHAR
+          avatar_url VARCHAR(255),
+          created_at TIMESTAMP DEFAULT NOW()
         )`)
 }
 
@@ -26,8 +27,8 @@ function createArticlesTable() {
           title VARCHAR(255) NOT NULL,
           topic VARCHAR(255) NOT NULL REFERENCES article_topics(name),
           body VARCHAR NOT NULL,
-          image_url VARCHAR(255) DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700' NOT NULL,
-          upvote_count INT DEFAULT 0 NOT NULL,
+          image_url VARCHAR(255) DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700',
+          upvote_count INT DEFAULT 0,
           created_at TIMESTAMP DEFAULT NOW()
         );`)
 }
@@ -39,7 +40,7 @@ function createCommentsTable() {
           article_id INT REFERENCES articles(id) NOT NULL,
           author VARCHAR(255) REFERENCES users(username) NOT NULL,
           body VARCHAR NOT NULL,      
-          upvote_count INT DEFAULT 0 NOT NULL,
+          upvote_count INT DEFAULT 0,
           created_at TIMESTAMP DEFAULT NOW()
         );`)
 }
