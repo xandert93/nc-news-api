@@ -17,7 +17,7 @@ class Article {
         a.topic,
         a.body,
         a.image_url, 
-        a.rating, 
+        a.vote_count, 
         COUNT(ac.id)::integer as comment_count,
         a.created_at 
       FROM articles as a
@@ -48,7 +48,7 @@ class Article {
         a.topic, 
         a.body,
         a.image_url, 
-        a.rating, 
+        a.vote_count, 
         COUNT(ac.id)::integer as comment_count,
         a.created_at  
       FROM articles as a
@@ -88,11 +88,11 @@ class Article {
     return insertedArticle
   }
 
-  static async updateRatingById(id, incVal) {
+  static async updateVoteCountById(id, incVal) {
     const result = await db.query(
       `
       UPDATE articles
-      SET rating = rating + $2
+      SET vote_count = vote_count + $2
       WHERE id = $1
       RETURNING *;
     `,

@@ -65,8 +65,8 @@ describe('/api/articles', () => {
       title: 'string',
       topic: 'string',
       created_at: 'string',
-      rating: 'number',
       image_url: 'string',
+      vote_count: 'number',
       comment_count: 'number',
     }
 
@@ -124,7 +124,7 @@ describe('/api/articles/:id', () => {
         title: 'Living in the shadow of a great man',
         topic: 'mitch',
         body: 'I find this existence challenging',
-        rating: 100,
+        vote_count: 100,
         image_url:
           'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
       })
@@ -155,14 +155,14 @@ describe('/api/articles/:id', () => {
   })
 })
 
-describe('/api/articles/:id/rating', () => {
-  it('PATCH:200 responds with a database-updated article, where `.rating` is incremented by increment', async () => {
+describe('/api/articles/:id/vote_count', () => {
+  it('PATCH:200 responds with a database-updated article, where `.vote_count` is incremented by increment', async () => {
     const testArticle = testArticles[0]
 
-    const reqBody = { rating_incVal: 3 }
+    const reqBody = { vote_count_incVal: 3 }
 
     const res = await request(app)
-      .patch('/api/articles/1/rating')
+      .patch('/api/articles/1/vote_count')
       .send(reqBody)
       .expect(200)
 
@@ -172,7 +172,7 @@ describe('/api/articles/:id/rating', () => {
       id: 1,
       ...testArticle,
       created_at: article.created_at, // no way to avoid
-      rating: testArticle.rating + reqBody.rating_incVal,
+      vote_count: testArticle.vote_count + reqBody.vote_count_incVal,
     })
   })
 
@@ -180,7 +180,7 @@ describe('/api/articles/:id/rating', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/1/rating')
+      .patch('/api/articles/1/vote_count')
       .send(reqBody)
       .expect(400)
 
@@ -188,10 +188,10 @@ describe('/api/articles/:id/rating', () => {
   })
 
   it('PATCH:400 (inappropriate request body) responds with a "Bad Request" error message', async () => {
-    const reqBody = { rating_incVal: 'banana' }
+    const reqBody = { vote_count_incVal: 'banana' }
 
     const res = await request(app)
-      .patch('/api/articles/1/rating')
+      .patch('/api/articles/1/vote_count')
       .send(reqBody)
       .expect(400)
 
@@ -202,7 +202,7 @@ describe('/api/articles/:id/rating', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/not-an-id/rating')
+      .patch('/api/articles/not-an-id/vote_count')
       .send(reqBody)
       .expect(400)
 
@@ -213,7 +213,7 @@ describe('/api/articles/:id/rating', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/10000/rating')
+      .patch('/api/articles/10000/vote_count')
       .send(reqBody)
       .expect(404)
 
@@ -247,7 +247,7 @@ describe('/api/comments/article_id/:article_id', () => {
     it('are of the correct shape', () => {
       const propTypes = {
         id: 'number',
-        rating: 'number',
+        vote_count: 'number',
         created_at: 'string',
         author: 'string',
         body: 'string',
@@ -294,7 +294,7 @@ describe('/api/comments/article_id/:article_id', () => {
     expect(comment).toEqual({
       id: testComments.length + 1,
       article_id: 1,
-      rating: 0,
+      vote_count: 0,
       created_at: comment.created_at, // only way to do this - can't do `new Date(Date.now()).toISOString()`, because it'll always be slightly off the time it was created on DB
       author: reqBody.username,
       body: reqBody.body,

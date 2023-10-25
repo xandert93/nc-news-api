@@ -17,8 +17,8 @@ exports.deleteArticleComment = async (req, res) => {
 
 exports.updateArticleCommentRating = async (req, res) => {
   const { id } = req.params
-  const incVal = req.body.rating_incVal
+  const { incVal } = req.body
 
-  const updatedComment = await ArticleComment.updateRatingById(id, incVal)
+  const updatedComment = await ArticleComment.updateVoteCountById(id, incVal)
   return res.json({ comment: updatedComment })
 }

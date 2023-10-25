@@ -15,6 +15,6 @@ router.route('/').get(getArticles).post(createArticle)
 router.route('/:id').get(getArticle)
 router.get('/:id/comments', getArticleComments)
 
-router.patch('/:id/rating', updateArticleRating)
+router.patch('/:id/vote_count', updateArticleRating)
 
 module.exports = router

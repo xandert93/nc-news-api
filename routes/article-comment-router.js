@@ -11,6 +11,6 @@ router.route('/').post(createArticleComment)
 
 router.route('/:id').delete(deleteArticleComment)
 
-router.route('/:id/rating').patch(updateArticleCommentRating)
+router.route('/:id/vote_count').patch(updateArticleCommentRating)
 
 module.exports = router
