@@ -28,7 +28,7 @@ function createArticlesTable() {
           topic VARCHAR(255) NOT NULL REFERENCES article_topics(name),
           body VARCHAR NOT NULL,
           image_url VARCHAR(255) DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700',
-          upvote_count INT DEFAULT 0,
+          rating INT DEFAULT 0,
           created_at TIMESTAMP DEFAULT NOW()
         );`)
 }
@@ -40,7 +40,7 @@ function createCommentsTable() {
           article_id INT REFERENCES articles(id) NOT NULL,
           author VARCHAR(255) REFERENCES users(username) NOT NULL,
           body VARCHAR NOT NULL,      
-          upvote_count INT DEFAULT 0,
+          rating INT DEFAULT 0,
           created_at TIMESTAMP DEFAULT NOW()
         );`)
 }

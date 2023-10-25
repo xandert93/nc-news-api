@@ -5,7 +5,7 @@ module.exports = [
     author: 'butter_bridge',
     body: 'I find this existence challenging',
     created_at: 1594329060000,
-    upvote_count: 100,
+    rating: 100,
     image_url:
       'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
   },

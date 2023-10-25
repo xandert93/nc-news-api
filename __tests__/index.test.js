@@ -65,7 +65,7 @@ describe('/api/articles', () => {
       title: 'string',
       topic: 'string',
       created_at: 'string',
-      upvote_count: 'number',
+      rating: 'number',
       image_url: 'string',
       comment_count: 'number',
     }
@@ -124,7 +124,7 @@ describe('/api/articles/:id', () => {
         title: 'Living in the shadow of a great man',
         topic: 'mitch',
         body: 'I find this existence challenging',
-        upvote_count: 100,
+        rating: 100,
         image_url:
           'https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700',
       })
@@ -155,14 +155,14 @@ describe('/api/articles/:id', () => {
   })
 })
 
-describe('/api/articles/:id/upvote_count', () => {
-  it('PATCH:200 responds with a database-updated article, where `.upvote_count` is incremented by increment', async () => {
+describe('/api/articles/:id/rating', () => {
+  it('PATCH:200 responds with a database-updated article, where `.rating` is incremented by increment', async () => {
     const testArticle = testArticles[0]
 
-    const reqBody = { vote_count_incVal: 3 }
+    const reqBody = { rating_incVal: 3 }
 
     const res = await request(app)
-      .patch('/api/articles/1/upvote_count')
+      .patch('/api/articles/1/rating')
       .send(reqBody)
       .expect(200)
 
@@ -172,7 +172,7 @@ describe('/api/articles/:id/upvote_count', () => {
       id: 1,
       ...testArticle,
       created_at: article.created_at, // no way to avoid
-      upvote_count: testArticle.upvote_count + reqBody.vote_count_incVal,
+      rating: testArticle.rating + reqBody.rating_incVal,
     })
   })
 
@@ -180,7 +180,7 @@ describe('/api/articles/:id/upvote_count', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/1/upvote_count')
+      .patch('/api/articles/1/rating')
       .send(reqBody)
       .expect(400)
 
@@ -188,10 +188,10 @@ describe('/api/articles/:id/upvote_count', () => {
   })
 
   it('PATCH:400 (inappropriate request body) responds with a "Bad Request" error message', async () => {
-    const reqBody = { vote_count_incVal: 'banana' }
+    const reqBody = { rating_incVal: 'banana' }
 
     const res = await request(app)
-      .patch('/api/articles/1/upvote_count')
+      .patch('/api/articles/1/rating')
       .send(reqBody)
       .expect(400)
 
@@ -202,7 +202,7 @@ describe('/api/articles/:id/upvote_count', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/not-an-id/upvote_count')
+      .patch('/api/articles/not-an-id/rating')
       .send(reqBody)
       .expect(400)
 
@@ -213,7 +213,7 @@ describe('/api/articles/:id/upvote_count', () => {
     const reqBody = {}
 
     const res = await request(app)
-      .patch('/api/articles/10000/upvote_count')
+      .patch('/api/articles/10000/rating')
       .send(reqBody)
       .expect(404)
 
@@ -247,7 +247,7 @@ describe('/api/comments/article_id/:article_id', () => {
     it('are of the correct shape', () => {
       const propTypes = {
         id: 'number',
-        upvote_count: 'number',
+        rating: 'number',
         created_at: 'string',
         author: 'string',
         body: 'string',
@@ -294,7 +294,7 @@ describe('/api/comments/article_id/:article_id', () => {
     expect(comment).toEqual({
       id: testComments.length + 1,
       article_id: 1,
-      upvote_count: 0,
+      rating: 0,
       created_at: comment.created_at, // only way to do this - can't do `new Date(Date.now()).toISOString()`, because it'll always be slightly off the time it was created on DB
       author: reqBody.username,
       body: reqBody.body,

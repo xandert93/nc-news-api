@@ -1,14 +1,14 @@
 module.exports = [
   {
-    name: 'software',
+    name: 'Software',
     description: 'Writing instructions for computers to perform tasks and solve problems',
   },
   {
-    name: 'football',
+    name: 'Football',
     description: 'Team sport with 11 players per side, kicking a ball.',
   },
   {
     description: 'Preparing food through various techniques and recipes',
-    name: 'cooking',
+    name: 'Cooking',
   },
 ]

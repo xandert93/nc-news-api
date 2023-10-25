@@ -47,7 +47,7 @@ The following is _not_ a comprehensive list! Its purpose is just to get the ball
 
 - Bad `article_id` (e.g. `/dog`)
 - Well formed `article_id` that doesn't exist in the database (e.g. `/999999`)
-- Invalid `inc_upvote_count` (e.g. `{ inc_upvote_count : "cat" }`)
+- Invalid `inc_uprating` (e.g. `{ inc_uprating : "cat" }`)
 
 ### POST `/api/articles/:article_id/comments`
 

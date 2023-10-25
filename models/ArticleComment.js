@@ -13,7 +13,7 @@ class ArticleComment {
           'avatar_url', u.avatar_url
         ) AS author,
         ac.body,
-        ac.upvote_count,
+        ac.rating,
         ac.created_at
       From article_comments as ac
       LEFT JOIN users as u ON u.username = ac.author
@@ -37,11 +37,11 @@ class ArticleComment {
     return result.rows[0]
   }
 
-  static async updateVoteCountById(id, incVal) {
+  static async updateRatingById(id, incVal) {
     const result = await db.query(
       `
       UPDATE article_comments
-      SET upvote_count = upvote_count + $2
+      SET rating = rating + $2
       WHERE id = $1
       RETURNING *;
     `,

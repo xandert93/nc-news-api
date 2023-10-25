@@ -9,13 +9,15 @@ class Article {
         a.id, 
         json_build_object(
           'username', MAX(u.username),
+          'first_name', MAX(u.first_name),
+          'last_name', MAX(u.last_name),
           'avatar_url', MAX(u.avatar_url)
         ) AS author, 
         a.title,
         a.topic,
         a.body,
         a.image_url, 
-        a.upvote_count, 
+        a.rating, 
         COUNT(ac.id)::integer as comment_count,
         a.created_at 
       FROM articles as a
@@ -38,13 +40,15 @@ class Article {
         a.id, 
         json_build_object(
           'username', MAX(u.username),
+          'first_name', MAX(u.first_name),
+          'last_name', MAX(u.last_name),
           'avatar_url', MAX(u.avatar_url)
         ) AS author, 
         a.title, 
         a.topic, 
         a.body,
         a.image_url, 
-        a.upvote_count, 
+        a.rating, 
         COUNT(ac.id)::integer as comment_count,
         a.created_at  
       FROM articles as a
@@ -84,11 +88,11 @@ class Article {
     return insertedArticle
   }
 
-  static async updateVoteCountById(id, incVal) {
+  static async updateRatingById(id, incVal) {
     const result = await db.query(
       `
       UPDATE articles
-      SET upvote_count = upvote_count + $2
+      SET rating = rating + $2
       WHERE id = $1
       RETURNING *;
     `,

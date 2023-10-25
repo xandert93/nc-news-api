@@ -57,15 +57,15 @@ Here's a brief overview of the core tasks you'll be working on:
 
 - `GET /api`: Get a list of available endpoints.
 
-- `GET /api/topics`: Get a list of topics.
+- `GET /api/article-topics`: Get a list of topics.
 
 - `GET /api/articles`: Get a list of articles.
 - `GET /api/articles/:id`: Get a single article by ID.
 - `PATCH /api/articles/:id`: Update an article.
 
-- `DELETE /api/comments/:id`: Delete a comment.
-- `GET /api/comments/article_id/:article_id`: Get comments for an article.
-- `POST /api/comments/article_id/:article_id`: Add a comment to an article.
+- `DELETE /api/article-comments/:id`: Delete a comment.
+- `GET /api/article-comments/article_id/:article_id`: Get comments for an article.
+- `POST /api/article-comments/article_id/:article_id`: Add a comment to an article.
 
 - `GET /api/users`: Get a list of users.
 

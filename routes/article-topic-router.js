@@ -1,5 +1,5 @@
 const express = require('express')
-const { getTopics } = require('../controllers/topic-controller.js')
+const { getTopics } = require('../controllers/article-topic-controller.js')
 
 const router = express.Router()
 

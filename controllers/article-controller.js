@@ -1,4 +1,5 @@
 const Article = require('../models/Article.js')
+const ArticleComment = require('../models/ArticleComment.js')
 
 const { BadReqError } = require('../utils/error-types.js')
 
@@ -33,11 +34,20 @@ exports.getArticle = async (req, res) => {
   return res.json({ article: foundArticle })
 }
 
-exports.updateArticleVoteCount = async (req, res) => {
+exports.updateArticleRating = async (req, res) => {
   const { id } = req.params
-  const incVal = req.body.vote_count_incVal
+  const incVal = req.body.rating_incVal
 
-  const updatedArticle = await Article.updateVoteCountById(id, incVal)
+  const updatedArticle = await Article.updateRatingById(id, incVal)
 
   return res.json({ article: updatedArticle })
+}
+
+exports.getArticleComments = async (req, res) => {
+  const { id } = req.params
+
+  await Article.findById(id) // ⚠️ ensure it exists prior
+  const foundComments = await ArticleComment.findManyByArticleId(id)
+
+  return res.json({ comments: foundComments })
 }
