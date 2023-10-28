@@ -18,6 +18,14 @@ exports.getArticles = async (req, res) => {
   return res.json({ articles: foundArticles })
 }
 
+exports.getArticlesByUsername = async (req, res) => {
+  const { username } = req.params
+
+  const foundArticles = await Article.findManyByUsername(username)
+
+  return res.json({ articles: foundArticles })
+}
+
 exports.createArticle = async (req, res) => {
   const newArticle = req.body
 

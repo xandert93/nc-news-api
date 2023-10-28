@@ -33,6 +33,37 @@ class Article {
     return result.rows
   }
 
+  static async findManyByUsername(username) {
+    const result = await db.query(
+      `
+      SELECT 
+        a.id, 
+        json_build_object(
+          'username', MAX(u.username),
+          'first_name', MAX(u.first_name),
+          'last_name', MAX(u.last_name),
+          'avatar_url', MAX(u.avatar_url)
+        ) AS author, 
+        a.title,
+        a.topic,
+        a.body,
+        a.image_url, 
+        a.vote_count, 
+        COUNT(ac.id)::integer as comment_count,
+        a.created_at 
+      FROM articles as a
+      LEFT JOIN users as u ON u.username = a.author
+      LEFT JOIN article_comments as ac ON a.id = ac.article_id
+      WHERE a.author = $1
+      GROUP BY a.id
+      ORDER BY a.created_at DESC;
+      `,
+      [username]
+    )
+
+    return result.rows
+  }
+
   static async findById(id) {
     const result = await db.query(
       `

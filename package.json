@@ -10,7 +10,7 @@
     "test": "jest index",
     "test:watch": "jest index --watch",
     "prepare": "husky install",
-    "start:dev": "nodemon listen.js",
+    "dev": "nodemon listen.js",
     "start": "node listen.js"
   },
   "repository": {
