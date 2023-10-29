@@ -3,7 +3,7 @@ const User = require('../models/User.js')
 exports.getUsers = async (req, res) => {
   const {} = req.query
 
-  const foundUsers = await User.findMany()
+  const foundUsers = await User.find()
 
   return res.json({ users: foundUsers })
 }

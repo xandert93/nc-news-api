@@ -148,7 +148,7 @@ module.exports = [
     title: 'Which current Premier League manager was the best player?',
     topic: 'football',
     author: 'cooljmessy',
-    body: "Premier League managers work with some of the top players in world football - but were they any good in their day? From European Cup and league title winners to one manager who only played at university, there's a diverse range of experience among the top-flight bosses. We've taken a look at the playing achievements and ability of the current Premier League managers and ranked them. Read on to see who ranks where...",
+    body: `Who is the best manager in the Premier League? It’s a hot debate topic if you bring it up. But isn’t it strange how no one talks about which of the Premier League managers was the best player? It’s a fairly accepted truism that you have to have been a player to be a manager, not necessarily a great player, but there are certain insights to be gleaned after having played the game. The thing is, some managers were top players; maybe even top, top players – and that can either be a boon to their success or an albatross around their necks. Looking at the 2022/23 Premier League clubs’ managers, we’ve decided to rank them by how they were as players. Does it stack up to their skill as coaches? Was David Moyes better than Jurgen Klopp?`,
     created_at: 1676579444000,
     image_url:
       'https://images.pexels.com/photos/47343/the-ball-stadion-horn-corner-47343.jpeg?w=700&h=700',

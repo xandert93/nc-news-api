@@ -13,7 +13,7 @@ exports.getArticles = async (req, res) => {
     }
   }
 
-  const foundArticles = await Article.findMany(req.query.topic)
+  const foundArticles = await Article.find(req.query.topic)
 
   return res.json({ articles: foundArticles })
 }
@@ -21,13 +21,13 @@ exports.getArticles = async (req, res) => {
 exports.getArticlesByUsername = async (req, res) => {
   const { username } = req.params
 
-  const foundArticles = await Article.findManyByUsername(username)
+  const foundArticles = await Article.findByUsername(username)
 
   return res.json({ articles: foundArticles })
 }
 
 exports.getSuggestedArticles = async (req, res) => {
-  const { topic, exclude } = req.query
+  const { username, topic, exclude } = req.query
 
   const foundArticles = await Article.findSuggested(topic, exclude)
 
@@ -37,7 +37,7 @@ exports.getSuggestedArticles = async (req, res) => {
 exports.createArticle = async (req, res) => {
   const newArticle = req.body
 
-  const insertedArticle = await Article.createOne(newArticle)
+  const insertedArticle = await Article.create(newArticle)
 
   return res.json({ article: insertedArticle })
 }
@@ -54,7 +54,7 @@ exports.updateArticleRating = async (req, res) => {
   const { id } = req.params
   const { incVal } = req.body
 
-  const updatedArticle = await Article.updateVoteCountById(id, incVal)
+  const updatedArticle = await Article.updateVoteCount(id, incVal)
 
   return res.json({ article: updatedArticle })
 }
@@ -63,7 +63,7 @@ exports.getArticleComments = async (req, res) => {
   const { id } = req.params
 
   await Article.findById(id) // ⚠️ ensure it exists prior
-  const foundComments = await ArticleComment.findManyByArticleId(id)
+  const foundComments = await ArticleComment.findByArticleId(id)
 
   return res.json({ comments: foundComments })
 }

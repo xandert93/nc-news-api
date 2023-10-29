@@ -1,26 +1,12 @@
 const db = require('../db/connection')
 
 class User {
-  static async findMany() {
-    const result = await db.query(
-      `
-      SELECT * FROM users;
-      `
-    )
-
-    return result.rows
+  static async find() {
+    return db('users')
   }
 
   static async findByUsername(username) {
-    const result = await db.query(
-      `
-      SELECT * FROM users
-      WHERE username = $1;
-      `,
-      [username]
-    )
-
-    return result.rows[0]
+    return db('users').where({ username }).first()
   }
 }
 

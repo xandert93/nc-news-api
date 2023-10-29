@@ -2,168 +2,151 @@ const db = require('../db/connection')
 const { NotFoundError } = require('../utils/error-types')
 
 class Article {
-  static async findMany(topic) {
-    const result = await db.query(
-      `
-      SELECT 
-        a.id, 
+  static find(topic) {
+    return db('articles as a')
+      .select('a.id')
+      .select(
+        db.raw(`
         json_build_object(
           'username', MAX(u.username),
           'first_name', MAX(u.first_name),
           'last_name', MAX(u.last_name),
           'avatar_url', MAX(u.avatar_url)
-        ) AS author, 
-        a.title,
-        a.topic,
-        a.body,
-        a.image_url, 
-        a.vote_count, 
-        COUNT(ac.id)::integer as comment_count,
-        a.created_at 
-      FROM articles as a
-      LEFT JOIN users as u ON u.username = a.author
-      LEFT JOIN article_comments as ac ON a.id = ac.article_id
-      WHERE $1::varchar IS NULL or topic = $1
-      GROUP BY a.id
-      ORDER BY a.created_at DESC;
-      `,
-      [topic]
-    )
-
-    return result.rows
+        ) AS author
+      `)
+      )
+      .select('a.title', 'a.topic', 'a.body', 'a.image_url', 'a.vote_count')
+      .select(db.raw('CAST(COUNT(ac.id) AS INTEGER) as comment_count')) // Cast to INTEGER
+      .select('a.created_at')
+      .leftJoin('users as u', 'u.username', '=', 'a.author')
+      .leftJoin('article_comments as ac', 'a.id', '=', 'ac.article_id')
+      .modify((queryBuilder) => {
+        topic && queryBuilder.where('topic', topic)
+      })
+      .groupBy('a.id')
+      .orderBy('a.created_at', 'desc')
   }
 
-  static async findManyByUsername(username) {
-    const result = await db.query(
-      `
-      SELECT 
-        a.id, 
-        json_build_object(
-          'username', MAX(u.username),
-          'first_name', MAX(u.first_name),
-          'last_name', MAX(u.last_name),
-          'avatar_url', MAX(u.avatar_url)
-        ) AS author, 
-        a.title,
-        a.topic,
-        a.body,
-        a.image_url, 
-        a.vote_count, 
-        COUNT(ac.id)::integer as comment_count,
-        a.created_at 
-      FROM articles as a
-      LEFT JOIN users as u ON u.username = a.author
-      LEFT JOIN article_comments as ac ON a.id = ac.article_id
-      WHERE a.author = $1
-      GROUP BY a.id
-      ORDER BY a.created_at DESC;
-      `,
-      [username]
-    )
-
-    return result.rows
+  static findByUsername(username) {
+    return db('articles as a')
+      .select('a.id')
+      .select(
+        db.raw(`
+      json_build_object(
+        'username', MAX(u.username),
+        'first_name', MAX(u.first_name),
+        'last_name', MAX(u.last_name),
+        'avatar_url', MAX(u.avatar_url)
+      ) AS author
+    `)
+      )
+      .select('a.title', 'a.topic', 'a.body', 'a.image_url', 'a.vote_count')
+      .select(db.raw('CAST(COUNT(ac.id) AS INTEGER) as comment_count')) // Cast to INTEGER
+      .select('a.created_at')
+      .leftJoin('users as u', 'u.username', '=', 'a.author')
+      .leftJoin('article_comments as ac', 'a.id', '=', 'ac.article_id')
+      .where('a.author', username)
+      .groupBy('a.id')
+      .orderBy('a.created_at', 'desc')
   }
 
-  static async findSuggested(topic, exclude) {
-    const result = await db.query(
-      `
-      SELECT 
-        a.id, 
+  static findAuthorSuggested(username, exclude) {
+    return db('articles as a')
+      .select('a.id')
+      .select(
+        db.raw(`
+      json_build_object(
+        'username', MAX(u.username),
+        'first_name', MAX(u.first_name),
+        'last_name', MAX(u.last_name),
+        'avatar_url', MAX(u.avatar_url)
+      ) AS author
+    `)
+      )
+      .select('a.title', 'a.topic', 'a.body', 'a.image_url', 'a.vote_count')
+      .select(db.raw('CAST(COUNT(ac.id) AS INTEGER) as comment_count'))
+      .select('a.created_at')
+      .leftJoin('users as u', 'u.username', '=', 'a.author')
+      .leftJoin('article_comments as ac', 'a.id', '=', 'ac.article_id')
+      .where('a.author', username)
+      .whereNot('a.id', exclude)
+      .groupBy('a.id')
+      .orderByRaw('RANDOM()')
+      .limit(4)
+  }
+
+  static findSuggested(topic, exclude) {
+    return db('articles as a')
+      .select('a.id')
+      .select(
+        db.raw(`
         json_build_object(
           'username', MAX(u.username),
           'first_name', MAX(u.first_name),
           'last_name', MAX(u.last_name),
           'avatar_url', MAX(u.avatar_url)
-        ) AS author, 
-        a.title,
-        a.topic,
-        a.body,
-        a.image_url, 
-        a.vote_count, 
-        COUNT(ac.id)::integer as comment_count,
-        a.created_at 
-      FROM articles as a
-      LEFT JOIN users as u ON u.username = a.author
-      LEFT JOIN article_comments as ac ON a.id = ac.article_id
-      WHERE a.topic = $1
-      AND a.id != $2
-      GROUP BY a.id
-      ORDER BY RANDOM() -- randomises the row order
-      LIMIT 4
-      ;`,
-      [topic, exclude]
-    )
-
-    return result.rows
+        ) AS author
+      `)
+      )
+      .select('a.title', 'a.topic', 'a.body', 'a.image_url', 'a.vote_count')
+      .select(db.raw('CAST(COUNT(ac.id) AS INTEGER) as comment_count'))
+      .select('a.created_at')
+      .leftJoin('users as u', 'u.username', '=', 'a.author')
+      .leftJoin('article_comments as ac', 'a.id', '=', 'ac.article_id')
+      .where('a.topic', topic)
+      .whereNot('a.id', exclude)
+      .groupBy('a.id')
+      .orderByRaw('RANDOM()')
+      .limit(4)
   }
 
   static async findById(id) {
-    const result = await db.query(
-      `
-      SELECT 
-        a.id, 
+    const foundArticle = await db('articles as a')
+      .select('a.id')
+      .select(
+        db.raw(`
         json_build_object(
           'username', MAX(u.username),
           'first_name', MAX(u.first_name),
           'last_name', MAX(u.last_name),
           'avatar_url', MAX(u.avatar_url)
-        ) AS author, 
-        a.title, 
-        a.topic, 
-        a.body,
-        a.image_url, 
-        a.vote_count, 
-        COUNT(ac.id)::integer as comment_count,
-        a.created_at  
-      FROM articles as a
-      LEFT JOIN users as u ON u.username = a.author
-      LEFT JOIN article_comments as ac ON a.id = ac.article_id
-      WHERE a.id = $1
-      GROUP BY a.id;
-      `,
-      [id]
-    )
-
-    const foundArticle = result.rows[0]
+        ) AS author
+      `)
+      )
+      .select('a.title', 'a.topic', 'a.body', 'a.image_url', 'a.vote_count')
+      .select(db.raw('CAST(COUNT(ac.id) AS INTEGER) as comment_count'))
+      .select('a.created_at')
+      .leftJoin('users as u', 'u.username', '=', 'a.author')
+      .leftJoin('article_comments as ac', 'a.id', '=', 'ac.article_id')
+      .where('a.id', id)
+      .groupBy('a.id')
+      .first()
 
     if (!foundArticle) throw new NotFoundError('article')
     return foundArticle
   }
 
-  static async createOne(newArticle) {
-    const result = await db.query(
-      `
-      INSERT INTO articles (author, title, topic, body, image_url)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *;
-    `,
-      [
-        newArticle.author,
-        newArticle.title,
-        newArticle.topic,
-        newArticle.body,
-        newArticle.image_url ||
-          'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700', // ❓ when we specify $5, DEFAULT specified in table appears to be ignored, even if $5 => undefined or null
-      ]
-    )
+  static async create(newArticle) {
+    const insertedArticle = await db('articles')
+      .insert({
+        ...newArticle,
+        image_url:
+          newArticle.image_url ||
+          'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700',
+      })
+      .returning('*')
 
-    const insertedArticle = result.rows[0]
-    insertedArticle.comment_count = 0
-    return insertedArticle
+    insertedArticle[0].comment_count = 0
+
+    return insertedArticle[0]
   }
 
-  static async updateVoteCountById(id, incVal) {
-    const result = await db.query(
-      `
-      UPDATE articles
-      SET vote_count = vote_count + $2
-      WHERE id = $1
-      RETURNING *;
-    `,
-      [id, incVal]
-    )
-
-    const updatedArticle = result.rows[0]
+  static async updateVoteCount(id, incVal) {
+    const updatedArticle = await db('articles')
+      .where({ id })
+      .increment('vote_count', incVal)
+      .returning('*')
+      .first()
 
     if (!updatedArticle) throw new NotFoundError('article')
     return updatedArticle
