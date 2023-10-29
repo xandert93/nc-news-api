@@ -9,7 +9,7 @@ module.exports = [
       'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?w=700&h=700',
   },
   {
-    title: "The Rise Of Thinking Machines: How IBM's Watson Takes On The World",
+    title: "The Rise of Thinking Machines: How IBM's Watson Takes on the World",
     topic: 'software',
     author: 'jessjelly',
     body: 'Many people know Watson as the IBM-developed cognitive super computer that won the Jeopardy! gameshow in 2011. In truth, Watson is not actually a computer but a set of algorithms and APIs, and since winning TV fame (and a $1 million prize) IBM has put it to use tackling tough problems in every industry from healthcare to finance. Most recently, IBM has announced several new partnerships which aim to take things even further, and put its cognitive capabilities to use solving a whole new range of problems around the world.',
@@ -226,7 +226,7 @@ module.exports = [
       'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?w=700&h=700',
   },
   {
-    title: 'HOW COOKING HAS CHANGED US',
+    title: 'How Cooking Has Changed Us',
     topic: 'cooking',
     author: 'weegembump',
     body: 'In a cave in South Africa, archaeologists have unearthed the remains of a million-year-old campfire, and discovered tiny bits of animal bones and ash from plants. It’s the oldest evidence of our ancient human ancestors—probably Homo erectus, a species that preceded ours—cooking a meal.',
@@ -298,7 +298,7 @@ module.exports = [
       'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?w=700&h=700',
   },
   {
-    title: 'The Notorious MSG’s Unlikely Formula For Success',
+    title: 'The Notorious MSG’s Unlikely Formula for Success',
     topic: 'cooking',
     author: 'grumpy19',
     body: "The 'umami' craze has turned a much-maligned and misunderstood food additive into an object of obsession for the world’s most innovative chefs. But secret ingredient monosodium glutamate’s biggest secret may be that there was never anything wrong with it at all.",

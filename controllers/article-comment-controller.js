@@ -5,14 +5,17 @@ exports.createArticleComment = async (req, res) => {
 
   const createdComment = await ArticleComment.create(newComment)
 
-  return res.status(201).json({ comment: createdComment, message: 'Comment created!' })
+  return res.status(201).json({
+    message: 'Comment posted!',
+    comment: createdComment,
+  })
 }
 
 exports.deleteArticleComment = async (req, res) => {
   const { id } = req.params
 
   await ArticleComment.delete(id)
-  return res.sendStatus(204)
+  return res.json({ message: 'Comment deleted' })
 }
 
 exports.updateArticleCommentRating = async (req, res) => {

@@ -29,7 +29,12 @@ exports.getArticlesByUsername = async (req, res) => {
 exports.getSuggestedArticles = async (req, res) => {
   const { username, topic, exclude } = req.query
 
-  const foundArticles = await Article.findSuggested(topic, exclude)
+  const filter = {}
+
+  if (username) filter['a.author'] = username
+  if (topic) filter['a.topic'] = topic
+
+  const foundArticles = await Article.findSuggested(filter, exclude)
 
   return res.json({ articles: foundArticles })
 }
@@ -39,7 +44,7 @@ exports.createArticle = async (req, res) => {
 
   const insertedArticle = await Article.create(newArticle)
 
-  return res.json({ article: insertedArticle })
+  return res.status(201).json({ message: 'Article posted!', article: insertedArticle })
 }
 
 exports.getArticle = async (req, res) => {
@@ -57,6 +62,14 @@ exports.updateArticleRating = async (req, res) => {
   const updatedArticle = await Article.updateVoteCount(id, incVal)
 
   return res.json({ article: updatedArticle })
+}
+
+exports.deleteArticle = async (req, res) => {
+  const { id } = req.params
+
+  await Article.deleteById(id)
+
+  return res.json({ message: 'Article deleted' })
 }
 
 exports.getArticleComments = async (req, res) => {

@@ -25,7 +25,7 @@ const createUsersTable = () => {
   })
 }
 
-const createTopicsTable = () => {
+const createArticleTopicsTable = () => {
   return db.schema.createTable('article_topics', (table) => {
     table.string('name', 20).primary()
     table.string('description', 100)
@@ -38,7 +38,12 @@ const defaultArticleImgUrl =
 const createArticlesTable = () => {
   return db.schema.createTable('articles', (table) => {
     table.increments('id').primary()
-    table.string('author', 255).notNullable().references('username').inTable('users')
+    table
+      .string('author', 255)
+      .notNullable()
+      .references('username')
+      .inTable('users')
+      .onDelete('cascade') // when a user is deleted, delete all of its article rows
     table.string('title', 255).notNullable()
     table.string('topic', 255).notNullable().references('name').inTable('article_topics')
     table.text('body').notNullable()
@@ -48,10 +53,15 @@ const createArticlesTable = () => {
   })
 }
 
-const createCommentsTable = () => {
+const createArticleCommentsTable = () => {
   return db.schema.createTable('article_comments', (table) => {
     table.increments('id').primary()
-    table.integer('article_id').notNullable().references('id').inTable('articles')
+    table
+      .integer('article_id')
+      .notNullable()
+      .references('id')
+      .inTable('articles')
+      .onDelete('CASCADE') // when an article is deleted, delete all of its comment rows
     table.string('author', 255).notNullable().references('username').inTable('users')
     table.text('body').notNullable()
     table.integer('vote_count').defaultTo(0)
@@ -64,8 +74,8 @@ module.exports = {
   deleteArticlesTable,
   deleteUsersTable,
   deleteArticleTopicsTable,
-  createTopicsTable,
+  createArticleTopicsTable,
   createUsersTable,
   createArticlesTable,
-  createCommentsTable,
+  createArticleCommentsTable,
 }

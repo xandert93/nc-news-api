@@ -7,7 +7,7 @@ module.exports = [
     created_at: 1681461284000,
   },
   {
-    body: 'Nobis consequatur animi. Ullam nobis quaerat voluptates veniam.',
+    body: "Dude, React can be a beast with its massive ecosystem! That article hit the nail on the head. I've been at it for months, and I'm still exploring it like a beginner.",
     vote_count: 7,
     author: 'grumpy19',
     article_id: 4,
@@ -91,7 +91,7 @@ module.exports = [
     created_at: 1691062424000,
   },
   {
-    body: 'Iure quas est omnis porro. Est in est distinctio sequi consectetur rerum deserunt. Et et reiciendis. Consequatur distinctio sint porro neque molestiae.',
+    body: "Your narrative about starting with React is enlightening. I've heard the same sentiments from seasoned developers. React's ecosystem is vast, and learning to use it effectively is a journey worth taking.",
     vote_count: -4,
     author: 'weegembump',
     article_id: 4,
@@ -329,7 +329,7 @@ module.exports = [
     created_at: 1670264204000,
   },
   {
-    body: "The article 'The Notorious MSG’s Unlikely Formula For Success' offers a serious and thorough analysis of the umami trend and the redemption of monosodium glutamate. It's a must-read for anyone interested in the evolving world of gastronomy.",
+    body: "The article 'The Notorious MSG’s Unlikely Formula for Success' offers a serious and thorough analysis of the umami trend and the redemption of monosodium glutamate. It's a must-read for anyone interested in the evolving world of gastronomy.",
     vote_count: 12,
     author: 'jessjelly',
     article_id: 34,
@@ -343,7 +343,7 @@ module.exports = [
     created_at: 1695958904000,
   },
   {
-    body: "I thoroughly enjoyed reading 'The Notorious MSG’s Unlikely Formula For Success.' It's fascinating how the 'umami' craze has elevated monosodium glutamate to a whole new level in the culinary world. Kudos to the author for shedding light on this intriguing topic!",
+    body: "I thoroughly enjoyed reading 'The Notorious MSG’s Unlikely Formula for Success.' It's fascinating how the 'umami' craze has elevated monosodium glutamate to a whole new level in the culinary world. Kudos to the author for shedding light on this intriguing topic!",
     vote_count: 0,
     author: 'cooljmessy',
     article_id: 34,
@@ -371,7 +371,7 @@ module.exports = [
     created_at: 1672273724000,
   },
   {
-    body: "I found 'The Notorious MSG’s Unlikely Formula For Success' to be a delightful exploration of the umami craze and MSG's resurgence. It's a friendly reminder that sometimes, the most misunderstood ingredients can become culinary treasures.",
+    body: "I found 'The Notorious MSG’s Unlikely Formula for Success' to be a delightful exploration of the umami craze and MSG's resurgence. It's a friendly reminder that sometimes, the most misunderstood ingredients can become culinary treasures.",
     vote_count: 8,
     author: 'grumpy19',
     article_id: 34,
@@ -392,7 +392,7 @@ module.exports = [
     created_at: 1688171744000,
   },
   {
-    body: "While the article provides insights into MSG's revival in the culinary world, it falls short in addressing some critical concerns surrounding its consumption. A more balanced perspective would be beneficial in 'The Notorious MSG’s Unlikely Formula For Success.'",
+    body: "While the article provides insights into MSG's revival in the culinary world, it falls short in addressing some critical concerns surrounding its consumption. A more balanced perspective would be beneficial in 'The Notorious MSG’s Unlikely Formula for Success.'",
     vote_count: 5,
     author: 'happyamy2016',
     article_id: 34,
@@ -483,7 +483,7 @@ module.exports = [
     created_at: 1688768624000,
   },
   {
-    body: 'Et ullam nihil repudiandae facere sunt cupiditate cum. Doloremque voluptatem rerum qui error omnis. Dolorum numquam dolorum voluptas ad.',
+    body: "The article you mentioned reflects the sentiments of many developers who find React's ecosystem overwhelming. It's a complex landscape to navigate.",
     vote_count: 2,
     author: 'grumpy19',
     article_id: 4,
@@ -504,7 +504,7 @@ module.exports = [
     created_at: 1678271804000,
   },
   {
-    body: 'Fugiat molestiae iure et qui consequatur expedita quia. Est sed repellat nesciunt nulla sit in dolor laudantium. Totam vero et quam. In numquam magnam voluptas itaque. Quisquam vel vitae doloribus vel id laboriosam quibusdam.',
+    body: "React's ecosystem is like a maze, right? I've been using it for a while, but I still feel like I'm in the shallow end. That article gets it!",
     vote_count: 16,
     author: 'grumpy19',
     article_id: 4,
@@ -791,7 +791,7 @@ module.exports = [
     created_at: 1670639324000,
   },
   {
-    body: "'The Notorious MSG’s Unlikely Formula For Success' delves deep into the umami phenomenon and the redemption of MSG. This serious and well-researched piece offers a comprehensive view of how the culinary world is embracing the 'fifth taste.'",
+    body: "'The Notorious MSG’s Unlikely Formula for Success' delves deep into the umami phenomenon and the redemption of MSG. This serious and well-researched piece offers a comprehensive view of how the culinary world is embracing the 'fifth taste.'",
     vote_count: -4,
     author: 'tickle122',
     article_id: 34,
@@ -861,7 +861,7 @@ module.exports = [
     created_at: 1687066784000,
   },
   {
-    body: "I'm pleasantly surprised by the article 'The Notorious MSG’s Unlikely Formula For Success.' It's a friendly and enlightening read, highlighting how umami has transformed MSG's reputation. The world of cuisine owes a lot to this unsung hero!",
+    body: "I'm pleasantly surprised by the article 'The Notorious MSG’s Unlikely Formula for Success.' It's a friendly and enlightening read, highlighting how umami has transformed MSG's reputation. The world of cuisine owes a lot to this unsung hero!",
     vote_count: -1,
     author: 'grumpy19',
     article_id: 34,
@@ -903,7 +903,7 @@ module.exports = [
     created_at: 1684077764000,
   },
   {
-    body: "While 'The Notorious MSG’s Unlikely Formula For Success' offers a comprehensive view of the umami trend and the rehabilitation of monosodium glutamate, I must point out that it lacks a critical examination of potential health concerns associated with MSG. A more balanced perspective would enhance the article.",
+    body: "While 'The Notorious MSG’s Unlikely Formula for Success' offers a comprehensive view of the umami trend and the rehabilitation of monosodium glutamate, I must point out that it lacks a critical examination of potential health concerns associated with MSG. A more balanced perspective would enhance the article.",
     vote_count: 18,
     author: 'jessjelly',
     article_id: 34,
@@ -1015,7 +1015,7 @@ module.exports = [
     created_at: 1693092824000,
   },
   {
-    body: 'Soluta autem fuga non alias. Odit eligendi voluptas reiciendis repudiandae reiciendis doloribus adipisci qui consequuntur. Et dignissimos unde optio. Recusandae aspernatur eius error. Eos autem et iusto sunt fuga ipsam omnis voluptatem rerum.',
+    body: "Your discussion about React's ecosystem resonates with my experience. It's common for developers to grapple with the vast terrain before achieving mastery.",
     vote_count: 6,
     author: 'jessjelly',
     article_id: 4,
@@ -1050,7 +1050,7 @@ module.exports = [
     created_at: 1670635304000,
   },
   {
-    body: "The article on 'The Notorious MSG’s Unlikely Formula For Success' presents a deep dive into the umami phenomenon and the redemption of monosodium glutamate. It's a serious exploration of a topic often misunderstood, providing valuable insights into the culinary world.",
+    body: "The article on 'The Notorious MSG’s Unlikely Formula for Success' presents a deep dive into the umami phenomenon and the redemption of monosodium glutamate. It's a serious exploration of a topic often misunderstood, providing valuable insights into the culinary world.",
     vote_count: 14,
     author: 'jessjelly',
     article_id: 34,
@@ -1176,7 +1176,7 @@ module.exports = [
     created_at: 1686897524000,
   },
   {
-    body: 'Adipisci numquam eum maiores veniam qui praesentium. Veniam atque neque dolores. Voluptates doloremque eos corrupti. Vero minima nesciunt reprehenderit et eius unde a unde iusto. Architecto praesentium eum impedit. Ipsa officia ut ea sint autem nulla.',
+    body: "The Node Security Project's founder addresses common vulnerabilities in Node.js, acknowledging progress toward bolstering its security. His insights, shared at the Node Community Convention, underscore the importance of risk mitigation.",
     vote_count: 6,
     author: 'happyamy2016',
     article_id: 12,
@@ -1211,14 +1211,14 @@ module.exports = [
     created_at: 1683322424000,
   },
   {
-    body: "I thoroughly enjoyed reading 'The Notorious MSG’s Unlikely Formula For Success.' It's fascinating how the 'umami' craze has elevated monosodium glutamate to a whole new level in the culinary world. Kudos to the author for shedding light on this intriguing topic!",
+    body: "I thoroughly enjoyed reading 'The Notorious MSG’s Unlikely Formula for Success.' It's fascinating how the 'umami' craze has elevated monosodium glutamate to a whole new level in the culinary world. Kudos to the author for shedding light on this intriguing topic!",
     vote_count: -2,
     author: 'cooljmessy',
     article_id: 34,
     created_at: 1690708664000,
   },
   {
-    body: 'Consequatur quia adipisci. Provident tenetur est non harum commodi et itaque aut voluptate. Assumenda labore sed est dolores cum in et et. Velit repudiandae aut et est facere laborum et qui et. Magnam est aliquam.',
+    body: "Node.js can be tricky, right? The Node Security Project founder spilled the beans at a recent event. It's all about vulnerabilities, progress, and risks. Makes you think about that iceberg under the water!",
     vote_count: 5,
     author: 'cooljmessy',
     article_id: 12,
@@ -1274,7 +1274,7 @@ module.exports = [
     created_at: 1689222644000,
   },
   {
-    body: 'Eaque et officia maxime. Iusto provident a vitae. In dolorem numquam. Pariatur est laudantium laborum nostrum architecto assumenda ea maxime. Quia perferendis qui ducimus saepe et sunt cum dolore amet. Quibusdam aliquam nam illum consectetur aut porro.',
+    body: "The Node Security Project's founder, Adam Baldwin, shared valuable insights at the Node Community Convention. He discussed Node.js vulnerabilities and the ongoing progress in making it more secure.",
     vote_count: 15,
     author: 'cooljmessy',
     article_id: 12,
@@ -1309,7 +1309,7 @@ module.exports = [
     created_at: 1684235744000,
   },
   {
-    body: 'Qui at et qui pariatur saepe ea libero. Voluptate voluptatem qui est qui quasi et. Consequatur illo voluptatem ea autem vel vel. Perferendis iure ab voluptate asperiores odio odit dolores. Rem et nulla dolorem et dignissimos culpa. Voluptatibus nihil consequatur aspernatur debitis velit quaerat sequi praesentium.',
+    body: "React's ecosystem is a total brain teaser! I mean, I've been at it for 8 months, and I'm just scratching the surface. Whoa!",
     vote_count: 19,
     author: 'cooljmessy',
     article_id: 28,
@@ -1421,7 +1421,7 @@ module.exports = [
     created_at: 1669955564000,
   },
   {
-    body: 'Doloribus omnis numquam soluta. Eius officia molestias. Velit ex distinctio et sunt. Et non incidunt velit quam ullam accusantium natus sunt. Aut similique ullam eum impedit autem necessitatibus aut. Est accusamus quo beatae illo quaerat culpa perspiciatis.',
+    body: "Node.js, oh boy! Adam Baldwin, the Node Security Project founder, spilled the beans at the Node Community Convention. There's risk, security, and progress. It's like an iceberg hiding beneath the surface!",
     vote_count: 8,
     author: 'grumpy19',
     article_id: 12,
@@ -1519,7 +1519,7 @@ module.exports = [
     created_at: 1696563344000,
   },
   {
-    body: 'Iste laudantium explicabo nihil officia. Tempora voluptates amet exercitationem sed aut quo. Nostrum totam esse minus distinctio ipsum. Nisi debitis voluptatem rerum nisi qui.',
+    body: 'At the Node Community Convention, Adam Baldwin, the founder of the Node Security Project, highlighted vulnerabilities in Node.js and the steps taken to enhance its security. His emphasis on risks is crucial for enterprises.',
     vote_count: -3,
     author: 'weegembump',
     article_id: 12,
@@ -1596,7 +1596,7 @@ module.exports = [
     created_at: 1675063664000,
   },
   {
-    body: 'Quod asperiores aut. Rerum ipsa sed quas nobis qui recusandae neque. Est dolorem ipsam.',
+    body: "Your perspective on React's ecosystem is insightful. It highlights the common challenge of comprehending its depth and when to consider technologies like Redux.",
     vote_count: -4,
     author: 'jessjelly',
     article_id: 4,
@@ -1701,7 +1701,7 @@ module.exports = [
     created_at: 1675416524000,
   },
   {
-    body: 'Quaerat impedit totam unde sint recusandae aut ratione repudiandae libero. Ut corporis neque.',
+    body: 'Node.js is a wild ride, right? Adam Baldwin, the boss at the Node Security Project, spilled the beans at a recent event. He talked about risks, security, and the big iceberg beneath the code!',
     vote_count: 7,
     author: 'jessjelly',
     article_id: 12,
@@ -1785,7 +1785,7 @@ module.exports = [
     created_at: 1673577224000,
   },
   {
-    body: 'Aut fugiat eos distinctio culpa est est maxime. Maiores nihil quos velit minus beatae. Dolore eos tenetur voluptates nemo.',
+    body: "React's like a never-ending adventure, am I right? After 8 months, I'm still clueless about its vast ecosystem. That article hits home!",
     vote_count: -5,
     author: 'cooljmessy',
     article_id: 4,
@@ -1925,14 +1925,14 @@ module.exports = [
     created_at: 1686735524000,
   },
   {
-    body: 'Voluptatem unde dolor id et. Voluptas vitae soluta. Rerum aperiam illum dolores ducimus optio et possimus dolorum quo.',
+    body: "Adam Baldwin, the Node Security Project's founder, emphasized the security challenges faced by Node.js and the progress made. His insights, shared at the Node Community Convention, are pertinent to the enterprise environment.",
     vote_count: 20,
     author: 'weegembump',
     article_id: 12,
     created_at: 1694514404000,
   },
   {
-    body: 'Sed saepe voluptas aliquam similique. Debitis beatae reprehenderit dolore animi voluptatibus enim labore.',
+    body: "React's ecosystem complexity, as elucidated in the mentioned article, is an issue many developers face. Your experience highlights the continuous learning journey in this domain.",
     vote_count: 1,
     author: 'grumpy19',
     article_id: 4,

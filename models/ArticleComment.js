@@ -40,9 +40,9 @@ class ArticleComment {
   }
 
   static async delete(id) {
-    const deletedCount = await db('article_comments').where({ id }).del()
+    const deletionCount = await db('article_comments').where({ id }).del()
 
-    if (deletedCount === 0) throw new NotFoundError('comment')
+    if (deletionCount === 0) throw new NotFoundError('comment')
   }
 }
 

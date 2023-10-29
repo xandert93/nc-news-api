@@ -1,11 +1,8 @@
-const db = require('../connection')
-const { convertTimestampToDate, createRef, formatComments } = require('./utils')
-
 const {
-  createTopicsTable,
+  createArticleTopicsTable,
   createUsersTable,
   createArticlesTable,
-  createCommentsTable,
+  createArticleCommentsTable,
   deleteArticlesTable,
   deleteUsersTable,
   deleteArticleTopicsTable,
@@ -24,10 +21,10 @@ const seed = ({ topics, users, articles, comments }) => {
     .then(deleteArticlesTable)
     .then(deleteUsersTable)
     .then(deleteArticleTopicsTable)
-    .then(createTopicsTable)
+    .then(createArticleTopicsTable)
     .then(createUsersTable)
     .then(createArticlesTable)
-    .then(createCommentsTable)
+    .then(createArticleCommentsTable)
     .then(() => insertTopics(topics))
     .then(() => insertUsers(users))
     .then(() => insertArticles(articles))

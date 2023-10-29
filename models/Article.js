@@ -33,23 +33,14 @@ class Article {
 
   static findByUsername(username) {
     return getBaseQuery()
-      .where('a.author', username)
+      .where('a.author', username) // 🔥 .where() can also take an object specifying multiple conditions! Faster than writing successive WHERE clauses!
       .groupBy('a.id')
       .orderBy('a.created_at', 'desc')
   }
 
-  static findAuthorSuggested(username, exclude) {
+  static findSuggested(filter, exclude) {
     return getBaseQuery()
-      .where('a.author', username)
-      .whereNot('a.id', exclude)
-      .groupBy('a.id')
-      .orderByRaw('RANDOM()')
-      .limit(4)
-  }
-
-  static findSuggested(topic, exclude) {
-    return getBaseQuery()
-      .where('a.topic', topic)
+      .where(filter)
       .whereNot('a.id', exclude)
       .groupBy('a.id')
       .orderByRaw('RANDOM()')
@@ -74,7 +65,6 @@ class Article {
       .returning('*')
 
     insertedArticle.comment_count = 0
-
     return insertedArticle
   }
 
@@ -87,6 +77,12 @@ class Article {
 
     if (!updatedArticle) throw new NotFoundError('article')
     return updatedArticle
+  }
+
+  static async deleteById(id) {
+    const deletionCount = await db('articles').where({ id }).del()
+
+    if (deletionCount === 0) throw new NotFoundError('article')
   }
 }
 
