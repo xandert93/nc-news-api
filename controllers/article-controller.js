@@ -26,6 +26,14 @@ exports.getArticlesByUsername = async (req, res) => {
   return res.json({ articles: foundArticles })
 }
 
+exports.getSuggestedArticles = async (req, res) => {
+  const { topic, exclude } = req.query
+
+  const foundArticles = await Article.findSuggested(topic, exclude)
+
+  return res.json({ articles: foundArticles })
+}
+
 exports.createArticle = async (req, res) => {
   const newArticle = req.body
 

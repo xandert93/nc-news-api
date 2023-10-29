@@ -64,6 +64,39 @@ class Article {
     return result.rows
   }
 
+  static async findSuggested(topic, exclude) {
+    const result = await db.query(
+      `
+      SELECT 
+        a.id, 
+        json_build_object(
+          'username', MAX(u.username),
+          'first_name', MAX(u.first_name),
+          'last_name', MAX(u.last_name),
+          'avatar_url', MAX(u.avatar_url)
+        ) AS author, 
+        a.title,
+        a.topic,
+        a.body,
+        a.image_url, 
+        a.vote_count, 
+        COUNT(ac.id)::integer as comment_count,
+        a.created_at 
+      FROM articles as a
+      LEFT JOIN users as u ON u.username = a.author
+      LEFT JOIN article_comments as ac ON a.id = ac.article_id
+      WHERE a.topic = $1
+      AND a.id != $2
+      GROUP BY a.id
+      ORDER BY RANDOM() -- randomises the row order
+      LIMIT 4
+      ;`,
+      [topic, exclude]
+    )
+
+    return result.rows
+  }
+
   static async findById(id) {
     const result = await db.query(
       `
