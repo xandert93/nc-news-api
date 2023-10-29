@@ -1,62 +1,30 @@
 const db = require('./connection')
-const pgFormat = require('pg-format')
 const { createRef, formatComments, convertTimestampToDate } = require('./seeds/utils')
 
-const insertTopics = (topics) => () => {
-  return db.query(
-    pgFormat(
-      'INSERT INTO article_topics (name, description) VALUES %L;',
-      topics.map((t) => [t.name, t.description])
-    )
-  )
+/* 🔥 with Knex, we don't need pg-format to generate parameterised queries. Knex does this out of the box (cleaner code and more secure against SQL injection ✅).
+
+With Knex, pass the array of entities to .insert() (or other query builder methods), and Knex handles the parameterisation and query formatting.
+*/
+
+const insertTopics = (topics) => {
+  return db('article_topics').insert(topics)
 }
 
-const insertUsers = (users) => () => {
-  return db.query(
-    pgFormat(
-      'INSERT INTO users (username, first_name, last_name, avatar_url) VALUES %L;',
-      users.map((u) => [u.username, u.first_name, u.last_name, u.avatar_url])
-    )
-  )
+const insertUsers = (users) => {
+  return db('users').insert(users)
 }
 
-const insertArticles = (articles) => async () => {
-  const formattedarticles = articles.map(convertTimestampToDate)
+const insertArticles = (articles) => {
+  const formattedArticles = articles.map(convertTimestampToDate)
 
-  const result = await db.query(
-    pgFormat(
-      'INSERT INTO articles (author, topic, title, body, image_url, vote_count, created_at) VALUES %L RETURNING *;',
-      formattedarticles.map((art) => [
-        art.author,
-        art.topic,
-        art.title,
-        art.body,
-        art.image_url,
-        art.vote_count || 0, // to do with the way test seed data and dev seed data are different
-        art.created_at,
-      ])
-    )
-  )
-
-  return result.rows
+  return db('articles').insert(formattedArticles).returning('*')
 }
 
-const insertComments = (comments) => (insertedArticles) => {
+const insertComments = (comments, insertedArticles) => {
   const articleIdLookup = createRef(insertedArticles, 'title', 'id')
   const formattedComments = formatComments(comments, articleIdLookup)
 
-  return db.query(
-    pgFormat(
-      'INSERT INTO article_comments (body, author, article_id, vote_count, created_at) VALUES %L;',
-      formattedComments.map((com) => [
-        com.body,
-        com.author,
-        com.article_id,
-        com.vote_count,
-        com.created_at,
-      ])
-    )
-  )
+  return db('article_comments').insert(formattedComments)
 }
 
 module.exports = {

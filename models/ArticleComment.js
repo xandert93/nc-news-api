@@ -20,10 +20,12 @@ class ArticleComment {
   }
 
   static async create(newComment) {
-    const rows = await db('article_comments').insert(newComment).returning('*')
+    const [insertedComment] = await db('article_comments')
+      .insert(newComment)
+      .returning('*')
     // 🔥 can't chain .first() on "insert" query 😔
 
-    return rows[0]
+    return insertedComment
   }
 
   static async updateVoteCount(id, incVal) {

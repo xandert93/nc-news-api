@@ -6,6 +6,10 @@ const {
   createUsersTable,
   createArticlesTable,
   createCommentsTable,
+  deleteArticlesTable,
+  deleteUsersTable,
+  deleteArticleTopicsTable,
+  deleteArticleCommentsTable,
 } = require('../tables.js')
 
 const {
@@ -16,19 +20,18 @@ const {
 } = require('../seeders.js')
 
 const seed = ({ topics, users, articles, comments }) => {
-  return db
-    .query(`DROP TABLE IF EXISTS article_comments`)
-    .then(() => db.query(`DROP TABLE IF EXISTS articles`))
-    .then(() => db.query(`DROP TABLE IF EXISTS users`))
-    .then(() => db.query(`DROP TABLE IF EXISTS article_topics`))
+  return deleteArticleCommentsTable()
+    .then(deleteArticlesTable)
+    .then(deleteUsersTable)
+    .then(deleteArticleTopicsTable)
     .then(createTopicsTable)
     .then(createUsersTable)
     .then(createArticlesTable)
     .then(createCommentsTable)
-    .then(insertTopics(topics))
-    .then(insertUsers(users))
-    .then(insertArticles(articles))
-    .then(insertComments(comments))
+    .then(() => insertTopics(topics))
+    .then(() => insertUsers(users))
+    .then(() => insertArticles(articles))
+    .then((insertedArticles) => insertComments(comments, insertedArticles))
 }
 
 module.exports = seed

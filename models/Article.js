@@ -142,11 +142,10 @@ class Article {
   }
 
   static async updateVoteCount(id, incVal) {
-    const updatedArticle = await db('articles')
+    const [updatedArticle] = await db('articles')
       .where({ id })
       .increment('vote_count', incVal)
       .returning('*')
-      .first()
 
     if (!updatedArticle) throw new NotFoundError('article')
     return updatedArticle
