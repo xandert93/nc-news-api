@@ -133,19 +133,19 @@ module.exports = [
     body: 'When Roy Hodgson resigned after this summer’s debacle, the England managerial merry go-round set into motion raising hopes that change would improve the nations fortunes.  In came Sam Allardyce but the same old squad was announced – apart from Michail Antonio – resulting in a similar type performance that was customary this summer. I was an advocate of Big Sam’s appointment because of the fact he managed down the league and could see that talent lay beyond just the big clubs in the country. Roy had many faults but the biggest frustration for me was he failed to utilise an already diminished pool of English players by continuing to pick the so called elite players – who are all tainted with failure. To be fair to Allardyce his first England game came so early in the season that it made making whole sale changes difficult. We shall never know if he would have picked different players. Since he left the job it was up to Gareth Southgate to take on the mantle and again hope arose that he may start to pick some of the talented under 21s that he has worked with over the last five years.',
     created_at: 1676539784000,
     image_url:
-      'https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?w=700&h=700',
+      'https://i.guim.co.uk/img/media/468f54a70d4090d86bbd749073b86a0d9c529e8e/0_0_2560_1536/master/2560.jpg?width=700&dpr=2&s=none',
   },
   {
-    title: 'History of FC Barcelona',
+    title: 'The History of FC Barcelona',
     topic: 'football',
     author: 'weegembump',
     body: "The history of Futbol Club Barcelona goes from the football club's founding in 1899 and up to current time. FC Barcelona, also known simply as Barcelona and familiarly as Barça, is based in Barcelona, Catalonia, Spain. The team was founded in 1899 by a group of Swiss, English and Spanish footballers led by Joan Gamper. The club played amateur football until 1910 in various regional competitions. In 1910, the club participated in their first of many European competitions, and has since amassed ten UEFA trophies and a sextuple. In 1928, Barcelona co-founded La Liga, the top-tier in Spanish football, along with a string of other clubs. As of 2016, Barcelona has never been relegated from La Liga, a record they share with Athletic Bilbao and arch-rival Real Madrid. The history of Barcelona has often been politically. Though it is a club created and run by foreigners, Barcelona gradually became a club associated with Catalan values. In Spain's transition to autocracy in 1925, Catalonia became increasingly hostile towards the central government in Madrid. The hostility enhanced Barcelona's image as a focal point for Catalonism, and when Francisco Franco banned the use of the Catalan language, the stadium of Barcelona became one of the few places the people could express their dissatisfaction. The Spanish transition to democracy in 1978 has not dampened the club's image of Catalan pride. In the 2000s – a period of sporting success in the club and an increased focus on Catalan players – club officials have openly called for Catalonia to become an independent state.",
     created_at: 1688376584000,
     image_url:
-      'https://images.pexels.com/photos/102448/pexels-photo-102448.jpeg?w=700&h=700',
+      'https://www.fcbarcelona.com/fcbarcelona/photo/2018/12/18/0dd476c9-d4e6-4e06-b596-89ae26886812/3200x2000-BEST_GOAL_EVER-ST.jpg',
   },
   {
-    title: 'Which current Premier League manager was the best player?',
+    title: 'Which Premier League Manager was the Best Player?',
     topic: 'football',
     author: 'cooljmessy',
     body: `Who is the best manager in the Premier League? It’s a hot debate topic if you bring it up. But isn’t it strange how no one talks about which of the Premier League managers was the best player? It’s a fairly accepted truism that you have to have been a player to be a manager, not necessarily a great player, but there are certain insights to be gleaned after having played the game. The thing is, some managers were top players; maybe even top, top players – and that can either be a boon to their success or an albatross around their necks. Looking at the 2022/23 Premier League clubs’ managers, we’ve decided to rank them by how they were as players. Does it stack up to their skill as coaches? Was David Moyes better than Jurgen Klopp?`,
@@ -154,7 +154,7 @@ module.exports = [
       'https://images.pexels.com/photos/47343/the-ball-stadion-horn-corner-47343.jpeg?w=700&h=700',
   },
   {
-    title: 'The People Tracking Every Touch, Pass And Tackle in the World Cup',
+    title: 'The People Tracking Every Touch, Pass and Tackle at the World Cup',
     topic: 'football',
     author: 'grumpy19',
     body: 'With each click and drag of a mouse, young soccer fanatics are creating the building blocks of the advanced stats that are changing how the sport is played, watched and analyzed. Opta and Prozone are among the companies that have taken soccer stats far beyond goals and saves, into the realm of pass completion percentage, defensive touches, percentage of aerial balls won, tackle percentage and goals scored above expectation. Cameras alone can’t process all these stats. So companies employ people — mostly young, mostly male, most logging matches in their spare time as a second job — to watch matches and document every event. Their work has helped develop stats that capture the value of players who don’t score many goals, but who set them up with pinpoint passing and hustle. Teams use advanced stats to decide which players to buy and put on the pitch. And fans, whether they like it or not, read and hear more numbers than ever before about this sport that for so long bucked the sports-analytics trend.',
@@ -163,25 +163,24 @@ module.exports = [
       'https://images.pexels.com/photos/1884576/pexels-photo-1884576.jpeg?w=700&h=700',
   },
   {
-    title: 'Who are the most followed clubs and players on Instagram?',
+    title: 'Can you guess the most followed clubs and players on Instagram?',
     topic: 'football',
     author: 'jessjelly',
     body: "Manchester United are the UK's most popular club on Instagram, with over 14m people following their account for their latest photos and videos. United's total number of followers is over six million more than second-placed Arsenal (8.1m, while Chelsea are third on the list with 7.7m followers, according to data exclusively compiled for Sky Sports. Instagram has a 500m-strong community, with one in three people on the social media site (around 165m) following a sports account.",
     created_at: 1691965064000,
     image_url:
-      'https://images.pexels.com/photos/685382/pexels-photo-685382.jpeg?w=700&h=700',
+      'https://e0.365dm.com/22/09/2048x1152/skysports-premier-league-promo_5897092.png',
   },
   {
-    title: 'History of Football',
+    title: 'The History of Football',
     topic: 'football',
     author: 'tickle122',
     body: 'It may come as a surprise to many, but football has a long and interesting history; sources suggest that the sport was first introduced in England as early as 1170 when an account describes youths going to the fields for a ‘game of ball’. Aspects of the game can even be traced back to as early as the second and third century BC in China. Sources taken from military manuals at the time describe an exercise called Tsu’ Chu, in which opponents used a leather ball filled with feathers and hair. The aim was to get the ball into a small net fixed on to bamboo canes while also defending themselves from attacks. Variations of the game are also documented in Egyptian and Greek society, proving that the sport has a long tradition throughout history.',
     created_at: 1675837244000,
-    image_url:
-      'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?w=700&h=700',
+    image_url: 'https://www.footballhistory.org/images/double_pic.jpg',
   },
   {
-    title: 'Agility Training Drills For Football Players',
+    title: 'Agility Training Drills for Football Players',
     topic: 'football',
     author: 'tickle122',
     body: 'There are so many areas of focus when it comes to football training, from strength training to ensure you can muscle past the opposition to endurance training to help you perform at your best for the 90 minutes of play. However, agility training should never be lost in the mix when planning sessions, as these drills will help you to change direction without losing balance, speed or strength. As a result, your body’s alignment will improve, your reaction speeds lowered and the chance of injury on the pitch reduced. When planning agility training drills for football players, MaxiNutrition believes coaches should look towards cones and ladders. The following guide explains how to use both pieces of equipment effectively:',
@@ -196,16 +195,16 @@ module.exports = [
     body: 'In this article, with the use of detailed Opta data, I am going to create a metric that I believe can quantify the extent and aggression of high presses employed by teams, both over a season and in any specific match. I’m going to see if it is possible define the intensity of a press with the use of numbers, more specifically by using some of the events that Opta record. Why would anyone want to do this? Well, for pretty much the same reason that we undertake any analytics study. If we can develop an objective scale which measures the intensity of a press then coaches can quickly see at a glance the strength, or otherwise, of the high pressing that their opposition has utilised in recent games. Teams or fans can also assess how much pressure their team exerted on the opposition in deep positions, and who knows, perhaps in time we will be able to assess the effectiveness that individual players have on the ability of their team to press. In essence we can take what is otherwise a subjective description and reduce it to one number so that it allows for comparison, analysis and ranking, if so desired.',
     created_at: 1679091944000,
     image_url:
-      'https://images.pexels.com/photos/906073/pexels-photo-906073.jpeg?w=700&h=700',
+      'https://com.spielverlagerung.de/wp-content/uploads/sites/2/2014/10/Klopps-raumorientiertes-Gegenpressing.png',
   },
   {
-    title: 'Sunday league football',
+    title: 'Sunday League',
     topic: 'football',
     author: 'weegembump',
     body: 'Sunday league football is a term used in the United Kingdom to describe those association football leagues which play on Sunday, as opposed to the more usual Saturday. These leagues tend to be lower standard amateur competitions, whose players may have less ability or less time to devote to football. The term pub league can also be used, due to the number of public houses that enter teams. Sunday leagues are sanctioned by the local County Football Association. There is no organised promotion or relegation between leagues, unlike in the National League System, which covers the top few levels of amateur football, although many leagues operate several divisions with promotion and relegation between them. However, ambitious Sunday teams may apply to join a Saturday league for a higher standard of football, and from there graduate to the FA-sanctioned leagues.',
     created_at: 1676850044000,
     image_url:
-      'https://images.pexels.com/photos/774321/pexels-photo-774321.jpeg?w=700&h=700',
+      'https://www.dreamteamfc.com/c/wp-content/uploads/sites/4/2017/03/Sunday-League-match.jpg?strip=all&w=742&quality=100',
   },
   {
     title: 'Game of talents: management lessons from top football coaches',
@@ -217,7 +216,7 @@ module.exports = [
       'https://images.pexels.com/photos/168872/pexels-photo-168872.jpeg?w=700&h=700',
   },
   {
-    title: 'Sweet potato & butternut squash soup with lemon & garlic toast',
+    title: 'Sweet Potato and Butternut Squash Soup with Lemon and Garlic Toast',
     topic: 'cooking',
     author: 'weegembump',
     body: 'Roast your vegetables in honey before blitzing into this velvety smooth, spiced soup - served with garlicky, zesty ciabatta slices for dipping',
@@ -316,7 +315,7 @@ module.exports = [
       'https://images.pexels.com/photos/33242/cooking-ingredient-cuisine-kitchen.jpg?w=700&h=700',
   },
   {
-    title: 'The vegan carnivore?',
+    title: 'The Vegan Carnivore?',
     topic: 'cooking',
     author: 'tickle122',
     body: 'The chef Richard McGeown has faced bigger culinary challenges in his distinguished career than frying a meat patty in a little sunflower oil and butter. But this time the eyes and cameras of hundreds of journalists in the room were fixed on the 5oz (140g) pink disc sizzling in his pan, one that had been five years and €250,000 in the making. This was the world’s first proper portion of cultured meat, a beef burger created by Mark Post, professor of physiology, and his team at Maastricht University in the Netherlands. Post (which rhymes with ‘lost’, not ‘ghost’) has been working on in vitro meat (IVM) since 2009. On 5 August this year he presented his cultured beef burger to the world as a ‘proof of concept’. Having shown that the technology works, Post believes that in a decade or so we could see commercial production of meat that has been grown in a lab rather than reared and slaughtered. The comforting illusion that supermarket trays of plastic-wrapped steaks are not pieces of dead animal might become a discomforting reality.',
@@ -331,6 +330,6 @@ module.exports = [
     body: "In the realm of football's grand design,\n    There stands a man both wise and kind,\n    With vision bold and strategies bright,\n    Eric ten Hag, a beacon of light.\n    \n    From Haaksbergen he did arise,\n    A coach with fire in his eyes,\n    His playing days were but a prelude,\n    To a managerial path pursued.\n    \n    With Twente's youth, he honed his craft,\n    Unveiling talents, making them laugh,\n    He saw the spark in every soul,\n    And nurtured them to reach their goal.\n    \n    Then came the call from Ajax's door,\n    A chance to reshape and to restore,\n    A sleeping giant poised to rise,\n    Under ten Hag's enlightened guise.\n    \n    His philosophy, a work of art,\n    Possession, movement, playing smart,\n    A symphony of passes danced,\n    As Ajax's prowess was enhanced.\n    \n    The pitch became his chessboard vast,\n    Each player moving, shadows cast,\n    With precision and calculated might,\n    Ten Hag orchestrated their footballing flight.\n    \n    From the back they built their dream,\n    With pressing high, they'd make teams scream,\n    Fluid movement, a joyful ballet,\n    As Ajax's brilliance came to play.\n    \n    Champions they rose in Dutch terrain,\n    Their dominance, a joyous reign,\n    The Eredivisie their rightful throne,\n    Eric ten Hag, a leader known.\n    \n    But it was Europe where he'd truly shine,\n    Challenging giants, weaving a line,\n    With courage and belief, they'd soar,\n    In the Champions League, they'd explore.\n    \n    A fearless march against the odds,\n    The footballing world in awe applauds,\n    With ten Hag's guidance, they'd dare to roam,\n    The young and talented, finding home.\n    \n    In battles fierce, they etched their name,\n    Defying history, fortune's game,\n    A testament to ten Hag's command,\n    That Ajax's spirit forever will stand.\n    \n    So let us sing a song of praise,\n    For Eric ten Hag's guiding ways,\n    A mastermind, a football sage,\n    Whose brilliance sets the pitch ablaze.",
     created_at: 1676850044000,
     image_url:
-      'https://images.pexels.com/photos/774321/pexels-photo-774321.jpeg?w=700&h=700',
+      'https://e3.365dm.com/22/04/1600x900/skynews-erik-ten-hag-ajax-manchester-united_5738180.png?20220413110044',
   },
 ]

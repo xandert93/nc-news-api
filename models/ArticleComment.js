@@ -19,9 +19,9 @@ class ArticleComment {
       .orderBy('created_at', 'desc')
   }
 
-  static async create(newComment) {
+  static async create(newArticle) {
     const [insertedComment] = await db('article_comments')
-      .insert(newComment)
+      .insert(newArticle)
       .returning('*')
     // 🔥 can't chain .first() on "insert" query 😔
 
@@ -29,11 +29,11 @@ class ArticleComment {
   }
 
   static async updateVoteCount(id, incVal) {
-    const updatedComment = await db('article_comments')
+    const [updatedComment] = await db('article_comments')
       .where({ id })
       .increment('vote_count', incVal)
       .returning('*')
-      .first()
+    // 🔥 can't chain .first() on "update" query 😔
 
     if (!updatedComment) throw new NotFoundError('comment')
     return updatedComment
